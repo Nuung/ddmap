@@ -1,10 +1,13 @@
 'use strict';
 
 module.exports = function(app) {
-  var customerList = require('../controllers/customerController.js');
-  var reqList = require('../controllers/reqlistController.js');
+  let customerList = require('../controllers/customerController.js');
+  let reqList = require('../controllers/reqlistController.js');
 
-  // todoList Routes
+  // app.get("/",function(req,res){
+  //   res.render("");
+  // });
+
   app.route('/customers')
     .get(customerList.list_all_customers)
     .post(customerList.create_a_customer);
