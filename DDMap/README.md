@@ -1,5 +1,4 @@
-#copyright¨Ï ALL Copyrights reserved by Hyeonwoo, Jeong
-#AB:LE (every) company
+#copyrightÂ© ALL Copyrights reserved by Hyeonwoo, Jeong
 
 #AWS EC2 ubuntu 18.0.*
 - free tier
