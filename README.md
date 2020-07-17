@@ -1,3 +1,6 @@
+# DDMap
+모든 화장실에 대한 모든 것, 대똥여지도 - DDMap
+
 #copyright© ALL Copyrights reserved by Hyeonwoo, Jeong
 
 #AWS EC2 ubuntu 18.0.*
@@ -7,7 +10,7 @@
 - nginx
 	- test-frontend forwarding
 	- /home/ubuntu/projects/ableProject/test-frontend
-	- proxy server setting (not yet)
+	- reverse proxy server setting (not yet)
 
 - front-end
 	- HTML5, CSS3 with bootstarp
@@ -21,13 +24,14 @@
 
 #DataBase
 - mysql
+- mongoDB
 
 #IDE
 - Visual Studio Code
 	- sftp
 
 #SSH
-- putty
+- putty(just in window)
 	- private key: local download folder
 
 #ETC
