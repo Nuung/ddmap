@@ -1,12 +1,11 @@
 # DDMap
 모든 화장실에 대한 모든 것, 대똥여지도 - DDMap
 
-#copyright© ALL Copyrights reserved by Hyeonwoo, Jeong
-
-#AWS EC2 ubuntu 18.0.*
+## Infra
+AWS EC2 ubuntu 18.0.*
 - free tier
 
-#WebServer(EC2)
+WebServer(EC2)
 - nginx
 	- test-frontend forwarding
 	- /home/ubuntu/projects/ableProject/test-frontend
@@ -17,25 +16,28 @@
 	- vanilla javascript (at first)
 	- to react.js (to scale up)
 
-#WebApplicationServer(EC2)
+WebApplicationServer(EC2)
 - back-end
 	- Nodejs 
 		- express, resetAPI
 
-#DataBase
+DataBase
 - mysql
 - mongoDB
 
-#IDE
+IDE
 - Visual Studio Code
 	- sftp
 
-#SSH
+SSH
 - putty(just in window)
 	- private key: local download folder
 
-#ETC
+ETC
 - github
 
-#Open-source
+Open-source
 - Docker (not yet)
+- Elasticsearch (not yet)
+
+©copyright ALL Copyrights reserved by Hyeonwoo, Jeong
