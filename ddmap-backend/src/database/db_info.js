@@ -8,14 +8,14 @@ module.exports = (function () {
       port: '3306',
       user: 'root',
       password: '',
-      database: 'ablevery_codi'
+      database: ''
     },
     real: { // real server db info
       host: '18.189.22.54',
       port: '3306',
       user: 'root',
       password: '',
-      database: 'loginAction'
+      database: ''
     },
     dev: { // dev server db info - Not using now
       host: '',
