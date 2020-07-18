@@ -107,31 +107,33 @@ public/
 # Ignore all local history of files
 .history
 
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Dump file
-*.stackdump
+# Icon must end with two \r
+Icon
 
-# Folder config file
-[Dd]esktop.ini
+# Thumbnails
+._*
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 ####### my setting #######
 test-backend/src/database/
