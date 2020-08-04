@@ -136,6 +136,6 @@ Temporary Items
 .apdisk
 
 ####### my setting #######
-test-backend/src/database/
+# test-backend/src/database/
 
 # End of https://www.gitignore.io/api/node,windows,visualstudiocode
