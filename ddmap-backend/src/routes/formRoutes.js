@@ -4,9 +4,6 @@ module.exports = function(app) {
   let customerList = require('../controllers/customerController.js');
   let reqList = require('../controllers/reqlistController.js');
 
-  // app.get("/",function(req,res){
-  //   res.render("");
-  // });
 
   app.route('/customers')
     .get(customerList.list_all_customers)

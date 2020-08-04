@@ -11,11 +11,11 @@ module.exports = (function () {
       database: ''
     },
     real: { // real server db info
-      host: '18.189.22.54',
+      host: '3.35.2.138',
       port: '3306',
-      user: 'root',
-      password: '',
-      database: ''
+      user: 'sik8856',
+      password: 'dkagh1..',
+      database: 'toilet_db'
     },
     dev: { // dev server db info - Not using now
       host: '',
