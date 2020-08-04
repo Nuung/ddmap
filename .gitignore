@@ -81,7 +81,7 @@ typings/
 .nuxt
 
 # react / gatsby 
-public/
+ddmap-frontend/public/images/*
 
 # vuepress build output
 .vuepress/dist
