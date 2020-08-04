@@ -81,7 +81,7 @@ typings/
 .nuxt
 
 # react / gatsby 
-public/
+ddmap-frontend/public/images/*
 
 # vuepress build output
 .vuepress/dist
@@ -136,6 +136,6 @@ Temporary Items
 .apdisk
 
 ####### my setting #######
-test-backend/src/database/
+# test-backend/src/database/
 
 # End of https://www.gitignore.io/api/node,windows,visualstudiocode
