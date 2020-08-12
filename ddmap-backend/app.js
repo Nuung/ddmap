@@ -4,13 +4,14 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const path = require('path');
 const session = require('session'); 
-const flash = requrie('connect-flash');
+const flash = require('connect-flash');
 const cors = require('cors');
 const escapeJSON = require('escape-json-node');
 const formRouter = require('./src/routes/formRoutes');
-const {sequelize} = require('./models')
+const { sequelize} = require('./src/models')
 // sns login 
 const passport = require('passport'); 
+const authRouter = require('./src/routes/auth'); 
 
 
 sequelize.sync(); 
@@ -50,7 +51,7 @@ app.use(flash());
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 app.use('/', formRouter); 
-
+app.use('/auth', authRouter); 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

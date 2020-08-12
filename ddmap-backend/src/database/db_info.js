@@ -15,7 +15,7 @@ module.exports = (function () {
       port: '3306',
       user: 'sik8856',
       password: 'dkagh1..',
-      database: 'toilet_db'
+      database: 'ddmap'
     },
     dev: { // dev server db info - Not using now
       host: '',
