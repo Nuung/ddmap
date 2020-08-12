@@ -3,11 +3,12 @@ const passport = require('passport');
 const bcrypt = require('bcrypt'); 
 const {isLoggedIn, isNotLoggedIn } = require('./middlewares'); 
 const { User } = require('../models'); 
+const multer = require('multer'); 
 
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async(req, res, next) =>{
-    const { email, nick ,password} = req.body; 
+    const {id, profile_icon, nic_name, gender, password} = req.body; 
 
     try{
         //동기성을 보장하기 위해서 await--> 동기가 보장 되어야 exUser가 에러나지 않음 
@@ -18,11 +19,13 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
             return res.redirect('/join'); 
         }
 
-        const hash = await bcrypt.hash(password, 12); 
-        
+        const hash = await bcrypt.hash(password, 12);
+        // image 파일 데이터로 전송 
         await User.create({
-            email,
-            nick,
+            id,
+            profile_icon,
+            nic_name,
+            gender,
             password: hash,
         }); 
         
@@ -33,13 +36,14 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
     }
 
 //login 
-
+});
 router.post('/login', isNotLoggedIn, (req,res,next) =>{
     passport.authenticate('local', (authError, user, info) =>{
         if(authError){
             console.error(authError); 
             return next(authError); 
         }
+
         if(!user){
             req.flash('loginError' , info.message); 
             return res.redirect('/'); 
@@ -63,5 +67,13 @@ router.get('logout', isLoggedIn, (req,res) =>{
 
 });
 
+
+router.get('/kakao', passport.authenticate('kakao')); 
+
+router.get('/kakao/callback', passport.authenticate('kakao', {
+    failureRedirect: '/',
+}), (req , res) =>{
+    res.redirect('/');
 });
+
 module.exports = router; 

@@ -9,10 +9,10 @@ mysql_dbc.test_open(connection);
 
 const User = function(user){
     this.id = User.id;
-    this.token = User.token; 
     this.profile_icon = User.profile_icon; 
     this.nic_name = User.nic_name; 
-    this.gender = User.gender; 
+    this.gender = User.gender;
+    this.password = User.password 
 }
 
 User.signUP = function(newUser, result){
