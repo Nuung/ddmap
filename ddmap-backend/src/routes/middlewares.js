@@ -1,3 +1,4 @@
+// check middleware wether user is logined or not 
 exports.isLoggedIn = (req, res, next) => {
     if( req.isAuthenticated()){
     next(); 

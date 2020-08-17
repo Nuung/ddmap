@@ -8,3 +8,11 @@ exports.post_user_account = function(req, res){
         
     })
 }
+
+exports.get_user_account = function(req, res){
+    Task.getAccoount(function(err, task){
+
+    }) 
+}
+
+
