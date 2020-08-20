@@ -12,7 +12,7 @@ const User = function(user){
     this.profile_icon = User.profile_icon; 
     this.nic_name = User.nic_name; 
     this.gender = User.gender;
-    this.password = User.password 
+    this.password = User.password
 }
 
 User.signUP = function(newUser, result){

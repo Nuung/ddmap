@@ -10,42 +10,46 @@ commit;
 USE ddmap;
 
 CREATE TABLE toilet (
-  id      			INTEGER PRIMARY KEY,
+  id      			VARCHAR(60) PRIMARY KEY,
   name    			VARCHAR(40),
-  latitude  		DOUBLE,
-  longtitude    	DOUBLE,
+  latitude  		DOUBLE NOT NULL,
+  longtitude    	DOUBLE NOT NULL,
   image				VARCHAR(300),
-  goo_name			VARCHAR(20),
-  dong_name			VARCHAR(20),
-  street_num_main	VARCHAR(20),
-  street_num_sub	VARCHAR(20),
-  detail			VARCHAR(40),
-  update_date		DATE
+  goo_name			VARCHAR(30),
+  dong_name			VARCHAR(30),
+  street_num_main	VARCHAR(100), # 광나루로 13길 8
+  street_num_sub	VARCHAR(20), # 204
+  detail			VARCHAR(40), # etc
+  update_date		DATE,
+  created_date		DATE
 );
 
+# [prefix + A + 1]
 CREATE TABLE toilet_rank (
-  id      			INTEGER PRIMARY KEY,
-  toilet_id    		INTEGER,
+  id      			VARCHAR(60) PRIMARY KEY,
+  toilet_id    		VARCHAR(60),
   review_number  	INTEGER,
   review_avg_star   DOUBLE,
+  update_date		DATE,
   FOREIGN KEY (toilet_id) REFERENCES toilet(id)
 );
 
 CREATE TABLE  user (
-  id      	   INTEGER PRIMARY KEY,  
-  token        VARCHAR(300),
-  profil_icon  VARCHAR(300),
+  id      	   VARCHAR(100) PRIMARY KEY, # email
+  password 	   VARCHAR(300),
+  #token        VARCHAR(300),
+  profil_icon  VARCHAR(300), # image
   nic_name     VARCHAR(20),
-  gender	   tinyint,
-  password 	   VARCHAR(100)
+  gender	   tinyint, # 0 1
+  created_date DATE
 );
 
 CREATE TABLE  reviews (
-  id      	   		INTEGER PRIMARY KEY,  
-  toilet_id    		INTEGER,
+  id      	   		VARCHAR(60) PRIMARY KEY,  
+  toilet_id    		VARCHAR(60),
   title        		VARCHAR(40),
-  latitude 			DOUBLE,
-  longtitude    	DOUBLE,  
+  latitude 			DOUBLE NOT NULL,
+  longtitude    	DOUBLE NOT NULL,  
   image				VARCHAR(300),
   clean_of_toilet 	INTEGER,
   amount_of_tissue 	INTEGER,
@@ -53,24 +57,27 @@ CREATE TABLE  reviews (
   is_secret			tinyint,
   short_detail		VARCHAR(40),
   update_date		DATE,
+  created_date		DATE,
   FOREIGN KEY (toilet_id) REFERENCES toilet(id)
 );
 
 CREATE TABLE  bookmark (
   id      	    INTEGER auto_increment PRIMARY KEY,  
-  user_id   	INTEGER,
-  toilet_id     INTEGER,
+  user_id   	VARCHAR(100),
+  toilet_id     VARCHAR(60),
+  created_date	DATE,
   FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (toilet_id) REFERENCES toilet(id)
 );
 
-CREATE TABLE  bookmark (
+CREATE TABLE  report (
   id      	   		  INTEGER auto_increment PRIMARY KEY,  
   report_comment      VARCHAR(300),
-  report_user_id      INTEGER,
-  reported_user_id    INTEGER,
-  report_review_id	  INTEGER,
-  report_date		  DATE,
+  report_user_id      VARCHAR(100),
+  reported_user_id    VARCHAR(100),
+  report_review_id	  VARCHAR(60),
+  reported_date		  DATE,
+  reported_clear_date DATE,
   FOREIGN KEY (report_user_id) REFERENCES user(id),
   FOREIGN KEY (reported_user_id) REFERENCES user(id),
   FOREIGN KEY (report_review_id) REFERENCES reviews(id)
