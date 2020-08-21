@@ -3,12 +3,13 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const path = require('path');
-const session = require('session'); 
+const session = require('express-session'); 
 const flash = require('connect-flash');
 const cors = require('cors');
 const escapeJSON = require('escape-json-node');
 const formRouter = require('./src/routes/formRoutes');
-const { sequelize} = require('./src/models')
+const sequelize = require('./models').sequelize;
+
 // sns login 
 const passport = require('passport'); 
 const authRouter = require('./src/routes/auth'); 

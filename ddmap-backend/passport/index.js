@@ -1,6 +1,6 @@
 const local = require('./localStrategy'); 
 const kakao = require('./kakaoStrategy'); 
-const {User} = requrie('../models'); 
+const {User} = require('../models/User'); 
 
 module.exports = (passport) =>{
     passport.serializeUser((user, done) => {
