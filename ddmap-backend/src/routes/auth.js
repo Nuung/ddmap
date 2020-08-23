@@ -5,7 +5,15 @@ const {isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const { User } = require('../../models/User'); 
 const multer = require('multer'); 
 
+const {
+    localSignup
+} = require('../controllers/userController')
+
 const router = express.Router();
+
+
+router.post('/local/signup', localSignup)
+
 
 router.post('/join', isNotLoggedIn, async(req, res, next) =>{
     const {id, profile_icon, nic_name, gender, password} = req.body; 
