@@ -43,8 +43,9 @@ class UserService{
         }
     }
 
-    verifyPassword(salt, passowrd, passwordToVerify){
+    verifyPassword(salt, password, passwordToVerify){
         try{
+            console.log('verifyPassword')
             const encryptedPasswdToVerify = crypto
             .pbkdf2Sync(passwordToVerify, salt, 10000, 64,'sha512')
             .toString('base64')
@@ -79,6 +80,18 @@ class UserService{
             const user = await this.Usermodel.saveUserByLocalId(data)
         }catch(error){
             console.log(error)
+            throw new Error(error)
+        }
+    }
+
+    async findUserByLocalPasswd(id){
+        try{
+            const user = await this.Usermodel.findUserByLocalPassword(id)
+        
+            return user
+
+        }catch(error){
+            console.log(error) 
             throw new Error(error)
         }
     }

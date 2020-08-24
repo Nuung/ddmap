@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => (
             unique: true,
             primaryKey: true
         },
+        salt:{
+          type: DataTypes.STRING(200),
+          allowNull: false,   
+        },
         profile_icon : {
             type: DataTypes.STRING(200), 
             allowNUll: true
@@ -29,7 +33,7 @@ module.exports = (sequelize, DataTypes) => (
             allwoNUll: false
         },
         password: {
-            type: DataTypes.STRING(100), 
+            type: DataTypes.STRING(200), 
             allowNUll: false,
         }
     })

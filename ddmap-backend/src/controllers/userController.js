@@ -5,7 +5,7 @@ const UserService = require('../../service/UserService')
 const localSignup =  async ( req , res ) =>{
     const userService = new UserService();
     console.log("UserPostTest")
-    
+
     const {
         body:{
             id,
@@ -25,9 +25,11 @@ const localSignup =  async ( req , res ) =>{
         }else{
 
             const encryptPasswd = userService.encryptPasswd(password)
+
             await userService.saveUserByLocalId({
                 id
                 ,profile_icon
+                ,salt : encryptPasswd.salt
                 ,nic_name
                 ,gender
                 ,password : encryptPasswd.encryptedPasswd   
@@ -52,9 +54,54 @@ const localSignup =  async ( req , res ) =>{
 
 }
 
+const localSignin = async (req , res ) => {
+    const userService = new UserService(); 
+
+    const {
+
+        body :{
+            id,
+            password,
+        }
+    } = req
+
+    //여기 로직 
+    try{
+        
+        const userpw = await userService.findUserByLocalPasswd(id) 
+
+        const checkPasswd = await userService.verifyPassword(userpw.salt, userpw.password, password)
+
+        if(checkPasswd && id === userpw.id){
+            //login 성공 메시지 
+            const data = {
+                message: '로그인에 성공했습니다.'
+            }
+
+            return res.status(201).json({data})
+
+        }else{
+
+            const data = {
+                message: '비밀번호 또는 아이디가 일치하지 않습니다.'
+            }
+
+            return res.status(401).json({data})
+
+        }
+        
+
+
+    }catch(error){
+
+    }
+
+}
+
 
 module.exports = {
-    localSignup
+    localSignup,
+    localSignin
 }
 
 

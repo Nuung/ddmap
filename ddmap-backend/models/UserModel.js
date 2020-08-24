@@ -11,11 +11,11 @@ class UserModel {
         profile_icon: data.profile_icon, 
         nic_name: data.nic_name,
         gender: data.gender, 
-        password: data.password 
-        
+        password: data.password ,
+        salt: data.salt
         })
     } 
-
+    //유저 id 중복 확인 
     async findUserByLocalId(id){
 
         const user = await User.findOne({
@@ -27,17 +27,22 @@ class UserModel {
         return user 
     }
 
-    // async saveUserByLocal(data) {
+    async findUserByLocalPassword(id){
 
-    //     await User.create({
-    //         id: data.id,
-    //         profile_icon: data.profile_icon,
-    //         nic_name : data.nic_name,
-    //         gender : data.gender, 
-    //         password : data.password
-    //     })
+        const user = await User.findOne({
+            attributes:[
+                'id',
+                'salt',
+                'password'
+            ],
+            where: {
+                id
+            },
+            raw : true 
+        })
+        return user 
+    }
 
-    // }
 
 }
 
