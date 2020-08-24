@@ -1,5 +1,7 @@
 
 const Usermodel = require('../models/UserModel')
+const crypto = require('crypto')
+const jwt = require('jsonwebtoken')
 
 //서비스는 유저와 관련 된 함수를 구현하는 파트 
 class UserService{
@@ -59,10 +61,10 @@ class UserService{
 
     }
 
-    async findUserByLocalId( local_id){
+    async findUserByLocalId(local_id){
 
         try{
-            const user = await this.User.findUserByLocalId(local_id)
+            const user = await this.Usermodel.findUserByLocalId(local_id)
             const userId = user ? user.id : null
 
             return userId 
@@ -74,7 +76,7 @@ class UserService{
 
     async saveUserByLocalId(data){
         try{
-            const user = await this.User.saveUserByLocalId(data)
+            const user = await this.Usermodel.saveUserByLocalId(data)
         }catch(error){
             console.log(error)
             throw new Error(error)

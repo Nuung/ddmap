@@ -7,12 +7,13 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const cors = require('cors');
 const escapeJSON = require('escape-json-node');
-const formRouter = require('./src/routes/formRoutes');
+const authRouter = require('./src/routes/auth'); 
+
 const sequelize = require('./models').sequelize;
 
 // sns login 
 const passport = require('passport'); 
-const authRouter = require('./src/routes/auth'); 
+
 
 
 sequelize.sync(); 
@@ -34,8 +35,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(cors()); // CORS 설정
 
-formRouter(app);
-
 //app session 
 
 app.use(session({
@@ -51,8 +50,8 @@ app.use(session({
 app.use(flash()); 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
-app.use('/', formRouter); 
 app.use('/auth', authRouter); 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -69,7 +68,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000)
 
 module.exports = app;
 

@@ -25,7 +25,7 @@ db.Sequelize = Sequelize;
 
 //create database using schema, if tables not exists 
 
-db.User = require('./User')(sequelize,Sequelize); 
+db.User = require('./User.entitiy')(sequelize,Sequelize); 
 db.Reviews = require('./Reviews')(sequelize, Sequelize);
 db.Bookmark = require('./Bookmark')(sequelize, Sequelize);
 db.Toilet = require('./Toilet')(sequelize, Sequelize);

@@ -4,7 +4,8 @@ const UserService = require('../../service/UserService')
 
 const localSignup =  async ( req , res ) =>{
     const userService = new UserService();
-
+    console.log("UserPostTest")
+    
     const {
         body:{
             id,
@@ -36,7 +37,7 @@ const localSignup =  async ( req , res ) =>{
             const token = await userService.makeToken(userId)
 
             const data = {
-                message: '회원가입에 성공했습니다. 이미지를 추가해주세요.',
+                message: '회원가입에 성공했습니다',
                 token
               }
               console.log(data)
@@ -44,8 +45,6 @@ const localSignup =  async ( req , res ) =>{
               res.status(201).json({data})
 
         }
-
-
     }catch(error){
         console.log(error); 
         throw new Error(error);

@@ -2,8 +2,8 @@
 
 const { _hasPrimaryKeys } = require("sequelize/lib/model");
 
-//const { sequelize } = require(".")
-//const { DataTypes } = require("sequelize/types")
+// const { sequelize } = require(".")
+// const { DataTypes } = require("sequelize/types")
 
 
 module.exports = (sequelize, DataTypes) => (
