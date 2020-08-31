@@ -28,6 +28,9 @@ class UserModel {
     }
 
     async findUserByLocalPassword(id){
+        
+        //find one 함수가 모든걸 찾아 주는건 아님
+        //attributes 함수를 통해서 조절 할 수 있음 
 
         const user = await User.findOne({
             attributes:[
@@ -40,6 +43,7 @@ class UserModel {
             },
             raw : true 
         })
+        
         return user 
     }
 

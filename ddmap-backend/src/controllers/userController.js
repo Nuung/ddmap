@@ -25,6 +25,9 @@ const localSignup =  async ( req , res ) =>{
         }else{
 
             const encryptPasswd = userService.encryptPasswd(password)
+            
+            // profile_icon의 경우 번호를 입력받아서 기존 데이터베이스에 저장 된 
+            // 이미지 주소를 매칭시켜서 저장해주는게 나을듯 
 
             await userService.saveUserByLocalId({
                 id
@@ -36,7 +39,7 @@ const localSignup =  async ( req , res ) =>{
             })
             
             const userId = await userService.findUserByLocalId(id)
-            const token = await userService.makeToken(userId)
+            const token =  userService.makeToken(userId)
 
             const data = {
                 message: '회원가입에 성공했습니다',

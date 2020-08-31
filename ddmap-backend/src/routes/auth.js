@@ -6,15 +6,21 @@ const User  = require('../../models/UserModel');
 const multer = require('multer'); 
 
 const {
+    uploadToiletImg
+    } = require('../../middlewares/uploadToiletImg')
+
+const {
     localSignup,
     localSignin
 } = require('../controllers/userController')
 
+console.log("appTest")
 const router = express.Router();
 
 
 router.post('/local/signup', localSignup)
 router.post('/local/signin', localSignin) 
+router.post('/local/upload/image', uploadToiletImg )
 
 // router.post('/join', isNotLoggedIn, async(req, res, next) =>{
 //     const {id, profile_icon, nic_name, gender, password} = req.body; 
