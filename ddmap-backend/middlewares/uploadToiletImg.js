@@ -37,7 +37,9 @@ const toiletImageMulter = multer(options).single("toiletimg")
 
        toiletImageMulter(req, res , error  => {
 
+
             if(error){
+                console.log("error11")
                 const errorMessage = error.message 
                 console.log(errorMessage)
                 res.status(500).json({errorMessage})
@@ -49,8 +51,8 @@ const toiletImageMulter = multer(options).single("toiletimg")
                 const errorMessage = '파일이 존재하지 않습니다.'
                 res.status(500).json({errorMessage})
                 return 
-            }
-    
+            }   
+        
            next() 
 
         })

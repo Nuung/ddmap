@@ -2,18 +2,12 @@
 
 const uploadImage = require('../../middlewares/uploadToiletImg')
 
-const uploadToiletImage =  async ( req , res ) =>{
+const uploadToiletImageCon =  async ( req , res ) =>{
 
     console.log("UserPostTest")
 
-    const {
-        body:{
-            toliet_img,
-        } 
-    } = req
-
     try{
-        const exImage = await uploadImage.uploadToiletImg(body.toliet_img)
+       // const exImage = await uploadImage.uploadToiletImg(body.toliet_img)
 
         if(exImage){
             const data = {

@@ -11,8 +11,13 @@ const {
 
 const {
     localSignup,
-    localSignin
+    localSignin,
+    getUserData
 } = require('../controllers/userController')
+
+const {
+    verifyToken
+}  = require('../../middlewares/auth')
 
 console.log("appTest")
 const router = express.Router();
@@ -20,7 +25,9 @@ const router = express.Router();
 
 router.post('/local/signup', localSignup)
 router.post('/local/signin', localSignin) 
-router.post('/local/upload/image', uploadToiletImg )
+router.post('/local/upload/image', uploadToiletImg)
+router.get('/local/user/info' ,verifyToken ,getUserData)
+
 
 // router.post('/join', isNotLoggedIn, async(req, res, next) =>{
 //     const {id, profile_icon, nic_name, gender, password} = req.body; 

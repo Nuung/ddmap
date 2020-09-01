@@ -54,6 +54,9 @@ app.use(passport.session());
 
 app.use('/auth', authRouter); 
 
+//image 사용 할 수 있게 만들어주는 static 
+app.use('/img', express.static('uploads'));
+
 
 
 

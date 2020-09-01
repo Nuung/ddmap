@@ -13,8 +13,8 @@ class UserService{
     //create token --> 유저 생성과 동시에 토큰 발행 
     makeToken (id) {
         const token = jwt.sign(
-            {
-            id
+        {
+            userId : id
         }, 
         process.env.JWT_SECRET,
         {
@@ -86,8 +86,9 @@ class UserService{
 
     async findUserByLocalPasswd(id){
         try{
+
             const user = await this.Usermodel.findUserByLocalPassword(id)
-        
+
             return user
 
         }catch(error){
@@ -95,6 +96,23 @@ class UserService{
             throw new Error(error)
         }
     }
+
+    async getUserDataByLocalId(local_id){
+
+        try{
+            const user = await this.Usermodel.getUserDataByLocalId(local_id)
+
+            if(user){
+                
+                return user
+            }
+        
+        }catch(error){
+            console.log(error)
+            throw new Error(error)
+        }
+    }
+
 
 }
 
