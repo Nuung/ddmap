@@ -19,7 +19,7 @@ const options = multer({
         limits: {fileSize: 200 * 1024 * 1024},
     })
     })
-    
+
 
 const toiletImageMulter = multer(options).single("toiletimg")
 
@@ -37,32 +37,31 @@ const toiletImageMulter = multer(options).single("toiletimg")
 
        toiletImageMulter(req, res , error  => {
 
-
             if(error){
-                console.log("error11")
                 const errorMessage = error.message 
                 console.log(errorMessage)
                 res.status(500).json({errorMessage})
                 return 
             }
-               
+
 
             if(!req.file){
                 const errorMessage = '파일이 존재하지 않습니다.'
                 res.status(500).json({errorMessage})
                 return 
-            }   
-        
-           next() 
+            }
+
+            return file.filename
+            
 
         })
     }catch(error){
         console.log(error)
     }
-   
+
 }
 
 module.exports = {
 
     uploadToiletImg
-} 
+}  

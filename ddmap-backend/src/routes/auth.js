@@ -7,7 +7,7 @@ const multer = require('multer');
 
 const {
     uploadToiletImg
-    } = require('../../middlewares/uploadToiletImg')
+    } = require('../../middlewares/uploadToiletImg.js')
 
 const {
     localSignup,
@@ -19,6 +19,10 @@ const {
     verifyToken
 }  = require('../../middlewares/auth')
 
+const {
+    registerNewToilet
+} = require('../controllers/toiletController')
+
 console.log("appTest")
 const router = express.Router();
 
@@ -27,7 +31,7 @@ router.post('/local/signup', localSignup)
 router.post('/local/signin', localSignin) 
 router.post('/local/upload/image', uploadToiletImg)
 router.get('/local/user/info' ,verifyToken ,getUserData)
-
+router.post('/local/toilet/register',uploadToiletImg , registerNewToilet )
 
 // router.post('/join', isNotLoggedIn, async(req, res, next) =>{
 //     const {id, profile_icon, nic_name, gender, password} = req.body; 

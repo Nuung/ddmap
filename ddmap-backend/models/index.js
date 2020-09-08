@@ -28,7 +28,7 @@ db.Sequelize = Sequelize;
 db.User = require('./User.entitiy')(sequelize,Sequelize); 
 db.Reviews = require('./Reviews')(sequelize, Sequelize);
 db.Bookmark = require('./Bookmark')(sequelize, Sequelize);
-db.Toilet = require('./Toilet')(sequelize, Sequelize);
+db.Toilet = require('./Toilet.entity')(sequelize, Sequelize);
 db.Reports = require('./Reports')(sequelize, Sequelize);
 db.Rank = require('./Rank')(sequelize , Sequelize); 
 
