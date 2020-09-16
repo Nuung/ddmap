@@ -9,7 +9,6 @@ class ToiletModel{
         console.log("register33")
 
         try{
-
             Toilet.create({
                 name : data.name, 
                 latitude : data.latitude, 
@@ -33,8 +32,7 @@ class ToiletModel{
       
     }
 
-
-
+    // query 작성할 일이 없음!!
     async findOneToilet(toilet_id){
        const toilet = await Toilet.findAll({
            where : {
@@ -43,10 +41,7 @@ class ToiletModel{
            raw: true 
        })
        return toilet 
-
     }
-
-
 }
 
 module.exports = ToiletModel
