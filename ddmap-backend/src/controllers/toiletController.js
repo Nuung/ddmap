@@ -12,14 +12,8 @@ const registerNewToilet =  async (req, res) =>{
     // if(req.file){
     //     image = req.file.name
     // }
-<<<<<<< HEAD
-
-    console.log("filenae " + req.file.filename) 
-  
-=======
   
     console.log("image Name " + image);
->>>>>>> 636cb6d736d3e922ff3e3a46224ffccea44cc5a2
     const {
             name,
             latitude, 
