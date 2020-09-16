@@ -1,5 +1,5 @@
 
-const User = require('./').User
+const User = require('./entity/User_entity').User
 
 class UserModel {
 

@@ -1,5 +1,5 @@
 'use strict'
-const UserService = require('../../service/UserService')
+const UserService = require('../service/UserService')
 
 
 const localSignup =  async ( req , res ) =>{

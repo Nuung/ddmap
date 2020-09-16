@@ -1,13 +1,11 @@
 const express = require('express'); 
-const passport = require('passport'); 
 const bcrypt = require('bcrypt'); 
-const {isLoggedIn, isNotLoggedIn } = require('./middlewares'); 
-const User  = require('../../models/UserModel'); 
+const User  = require('../models/UserModel'); 
 const multer = require('multer'); 
 
 const {
     uploadToiletImg
-    } = require('../../middlewares/uploadToiletImg.js')
+    } = require('../middlewares/uploadToiletImg')
 
 const {
     localSignup,
@@ -17,7 +15,7 @@ const {
 
 const {
     verifyToken
-}  = require('../../middlewares/auth')
+}  = require('../middlewares/auth')
 
 const {
     registerNewToilet

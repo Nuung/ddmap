@@ -1,8 +1,8 @@
 'use strict'
 
-const uploadImage = require('../../middlewares/uploadToiletImg.js');
-const ToiletService = require('../../service/ToiletService');
-const { Toilet } = require('../../models');
+const uploadImage = require('../middlewares/uploadToiletImg');
+const ToiletService = require('../service/ToiletService');
+const { Toilet } = require('../models');
 
 
 const registerNewToilet =  async (req, res) =>{
@@ -12,14 +12,8 @@ const registerNewToilet =  async (req, res) =>{
     // if(req.file){
     //     image = req.file.name
     // }
-<<<<<<< HEAD
-
-    console.log("filenae " + req.file.filename) 
-  
-=======
   
     console.log("image Name " + image);
->>>>>>> 636cb6d736d3e922ff3e3a46224ffccea44cc5a2
     const {
             name,
             latitude, 

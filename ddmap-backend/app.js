@@ -6,25 +6,15 @@ const path = require('path');
 const session = require('express-session'); 
 const flash = require('connect-flash');
 const cors = require('cors');
-const escapeJSON = require('escape-json-node');
+const escapeJSON = require('escape-json-node'); // 
 const authRouter = require('./src/routes/auth'); 
 
-const sequelize = require('./models').sequelize;
-
-// sns login 
-const passport = require('passport'); 
-
-
-
+const sequelize = require('./src/models').sequelize;
 sequelize.sync(); 
-
-const passportConfig = require('./passport'); 
 
 
 //add .env file 
 require('dotenv').config(); 
-
-passportConfig(passport); 
 
 const app = express();
 
@@ -48,9 +38,6 @@ app.use(session({
 }));
 
 app.use(flash()); 
-app.use(passport.initialize()); 
-app.use(passport.session()); 
-
 
 app.use('/auth', authRouter); 
 

@@ -2,18 +2,14 @@
 
 const jwt  = require('jsonwebtoken')
 
-
 const verifyToken = (req, res, next) =>{
 
     try{
         const schema = req.headers.authorization
         const token = schema.replace('Bearer ', '')
         req.token= jwt.verify(token, process.env.JWT_SECRET)
-
         return next()
-
     }catch(error){
-
         if(error.name == 'TokenExpiredError'){
             return res.status(419).json({
                 errorMessage: '토큰 만료'
@@ -25,6 +21,6 @@ const verifyToken = (req, res, next) =>{
     }
 }
 
-module.exports ={
+module.exports = {
     verifyToken
 }

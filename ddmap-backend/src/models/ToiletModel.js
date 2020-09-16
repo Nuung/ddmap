@@ -1,8 +1,7 @@
 
-const Toilet = require('.').Toilet
+const Toilet = require('./entity/Toilet_entity').Toilet;
 
 class ToiletModel{
-
 
     async registerNewToilet(data){
 
@@ -32,11 +31,7 @@ class ToiletModel{
       
     }
 
-<<<<<<< HEAD
-
-=======
     // query 작성할 일이 없음!!
->>>>>>> 636cb6d736d3e922ff3e3a46224ffccea44cc5a2
     async findOneToilet(toilet_id){
        const toilet = await Toilet.findAll({
            where : {

@@ -21,21 +21,19 @@ const options = multer({
     })
 
 
-const toiletImageMulter = multer(options).single("toiletimg")
+const toiletImageMulter = multer(options).single("toiletimg");
 
- const uploadToiletImg = (req, res, next ) => {
+const uploadToiletImg = (req, res, next ) => {
 
     fs.readdir('uploads', (error) =>{
         if(error){
             console.error('upload폴더가 없어서 폴더를 생성합니다. ')
             fs.mkdirSync('uploads');
         }
-    })
+    });
 
     try{
-
        toiletImageMulter(req, res , error  => {
-
             if(error){
                 const errorMessage = error.message 
                 console.log(errorMessage)
@@ -50,17 +48,12 @@ const toiletImageMulter = multer(options).single("toiletimg")
             // }
              
             return next() 
-       })
-
+       });
     }catch(error){
         console.log(error)
     }
-
-    
-
 }
 
 module.exports = {
-
     uploadToiletImg
 }  
