@@ -5,7 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../../config/config.json')[env];
 const db = {};
 
 let sequelize = new Sequelize(config.database, config.username, config.password, config);
@@ -20,12 +20,12 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // create database using schema, if tables not exists // table 구조!
-db.User = require('./User.entitiy')(sequelize, Sequelize); 
-db.Reviews = require('./Reviews')(sequelize, Sequelize);
-db.Bookmark = require('./Bookmark')(sequelize, Sequelize);
-db.Toilet = require('./Toilet.entity')(sequelize, Sequelize);
-db.Reports = require('./Reports')(sequelize, Sequelize);
-db.Rank = require('./Rank')(sequelize , Sequelize); 
+db.User = require('./entity/User_entity')(sequelize, Sequelize); 
+db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
+db.Bookmark = require('./entity/Bookmark_entity')(sequelize, Sequelize);
+db.Toilet = require('./entity/Toilet_entity')(sequelize, Sequelize);
+db.Reports = require('./entity/Reports_entity')(sequelize, Sequelize);
+db.Rank = require('./entity/Rank_entity')(sequelize , Sequelize); 
 
 // define db relation
 // db and reviews 1:n 관계 

@@ -1,8 +1,7 @@
 
-const Toilet = require('.').Toilet
+const Toilet = require('./entity/Toilet_entity').Toilet;
 
 class ToiletModel{
-
 
     async registerNewToilet(data){
 

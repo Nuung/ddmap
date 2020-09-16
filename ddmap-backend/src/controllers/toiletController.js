@@ -1,8 +1,8 @@
 'use strict'
 
-const uploadImage = require('../../middlewares/uploadToiletImg.js');
-const ToiletService = require('../../service/ToiletService');
-const { Toilet } = require('../../models');
+const uploadImage = require('../middlewares/uploadToiletImg');
+const ToiletService = require('../service/ToiletService');
+const { Toilet } = require('../models');
 
 
 const registerNewToilet =  async (req, res) =>{
