@@ -25,7 +25,6 @@ const toiletImageMulter = multer(options).single("toiletimg")
 
  const uploadToiletImg = (req, res, next ) => {
 
-
     fs.readdir('uploads', (error) =>{
         if(error){
             console.error('upload폴더가 없어서 폴더를 생성합니다. ')
@@ -44,20 +43,20 @@ const toiletImageMulter = multer(options).single("toiletimg")
                 return 
             }
 
+            // if(!req.file){
+            //     const errorMessage = '파일이 존재하지 않습니다.'
+            //     res.status(500).json({errorMessage})
+            //     return 
+            // }
+             
+            return next() 
+       })
 
-            if(!req.file){
-                const errorMessage = '파일이 존재하지 않습니다.'
-                res.status(500).json({errorMessage})
-                return 
-            }
-
-            return file.filename
-            
-
-        })
     }catch(error){
         console.log(error)
     }
+
+    
 
 }
 

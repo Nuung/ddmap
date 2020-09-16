@@ -12,10 +12,15 @@ const registerNewToilet =  async (req, res) =>{
     // if(req.file){
     //     image = req.file.name
     // }
+<<<<<<< HEAD
+
+    console.log("filenae " + req.file.filename) 
+  
+=======
   
     console.log("image Name " + image);
+>>>>>>> 636cb6d736d3e922ff3e3a46224ffccea44cc5a2
     const {
-        body:{
             name,
             latitude, 
             longitude, 
@@ -24,8 +29,8 @@ const registerNewToilet =  async (req, res) =>{
             street_num_main,
             street_num_sub,
             detail,
-        }
-    } = req 
+    } = req.body
+
 
     const toilet = {name, latitude, longitude, goo_name, dong_name,
     street_num_main, street_num_sub, detail, image};

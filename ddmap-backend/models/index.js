@@ -50,4 +50,8 @@ db.Bookmark.belongsTo(db.User);
 // 1 : 1 Bookmark and toilet 
 db.Bookmark.belongsTo(db.Toilet); 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 636cb6d736d3e922ff3e3a46224ffccea44cc5a2
 module.exports = db;
