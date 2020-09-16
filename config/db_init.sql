@@ -8,7 +8,6 @@ grant all privileges on ddmap.* to ddmap@localhost with grant option;
 commit;
 
 USE ddmap;
-
 CREATE TABLE toilet (
   id      			VARCHAR(60) PRIMARY KEY,
   name    			VARCHAR(40),
