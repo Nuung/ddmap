@@ -12,12 +12,10 @@ const registerNewToilet =  async (req, res) =>{
     // if(req.file){
     //     image = req.file.name
     // }
+
+    console.log("filenae " + req.file.filename) 
   
-
-     console.log("image Name " + image) 
-
     const {
-        body:{
             name,
             latitude, 
             longitude, 
@@ -26,8 +24,8 @@ const registerNewToilet =  async (req, res) =>{
             street_num_main,
             street_num_sub,
             detail,
-        }
-    } = req 
+    } = req.body
+
 
     const toilet = {name, latitude, longitude, goo_name, dong_name,
     street_num_main, street_num_sub, detail, image}
@@ -39,7 +37,6 @@ const registerNewToilet =  async (req, res) =>{
         
         if(check){
             const data = {
-
                 message: '화장실 등록에 성공했습니다'
               }
     

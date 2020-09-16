@@ -9,10 +9,12 @@ module.exports = (sequelize, dataTypes) =>(
             allowNull: false,
             uniuqe: true 
         },
+        
         user_id: {
             type: dataTypes.STRING, 
             allowNull: true
         }, 
+
         toilet_id : {
             type: dataTypes.DOUBLE, 
             allowNull:false

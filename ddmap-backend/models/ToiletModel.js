@@ -34,7 +34,6 @@ class ToiletModel{
     }
 
 
-
     async findOneToilet(toilet_id){
        const toilet = await Toilet.findAll({
            where : {

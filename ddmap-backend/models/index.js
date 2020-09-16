@@ -49,16 +49,12 @@ db.Reports.belongsTo(db.Reviews);
 // toilet and rank 1:1
 db.Rank.belongsTo(db.Toilet);
 
-
 // 1:N user and bookmark 
 db.User.hasMany(db.Bookmark); 
 db.Bookmark.belongsTo(db.User);
 
 // 1 : 1 Bookmark and toilet 
-
 db.Bookmark.belongsTo(db.Toilet); 
-
-
 
 
 module.exports = db;
