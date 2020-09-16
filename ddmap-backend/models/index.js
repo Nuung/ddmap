@@ -8,32 +8,26 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
-let sequelize;
-
- sequelize = new Sequelize(config.database, config.username, config.password, config);
+let sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
+    if (db[modelName].associate) {
+        db[modelName].associate(db);
+    }
 });
-
-
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-//create database using schema, if tables not exists 
-
-db.User = require('./User.entitiy')(sequelize,Sequelize); 
+// create database using schema, if tables not exists // table 구조!
+db.User = require('./User.entitiy')(sequelize, Sequelize); 
 db.Reviews = require('./Reviews')(sequelize, Sequelize);
 db.Bookmark = require('./Bookmark')(sequelize, Sequelize);
 db.Toilet = require('./Toilet.entity')(sequelize, Sequelize);
 db.Reports = require('./Reports')(sequelize, Sequelize);
 db.Rank = require('./Rank')(sequelize , Sequelize); 
 
-
-//define db relation
+// define db relation
 // db and reviews 1:n 관계 
 db.User.hasMany(db.Reviews); 
 db.Reviews.belongsTo(db.User);
@@ -56,5 +50,8 @@ db.Bookmark.belongsTo(db.User);
 // 1 : 1 Bookmark and toilet 
 db.Bookmark.belongsTo(db.Toilet); 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 636cb6d736d3e922ff3e3a46224ffccea44cc5a2
 module.exports = db;
