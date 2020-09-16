@@ -40,4 +40,4 @@ Open-source
 - Docker (not yet)
 - Elasticsearch (not yet)
 
-©copyright ALL Copyrights reserved by Hyeonwoo, Jeong
+<p align="center">©copyright ALL Copyrights reserved by Hyeonwoo, Jeong</p>
