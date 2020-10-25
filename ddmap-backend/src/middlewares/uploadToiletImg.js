@@ -18,7 +18,7 @@ const options = multer({
 
         limits: {fileSize: 200 * 1024 * 1024},
     })
-    })
+});
 
 
 const toiletImageMulter = multer(options).single("toiletimg");
@@ -52,8 +52,8 @@ const uploadToiletImg = (req, res, next ) => {
     }catch(error){
         console.log(error)
     }
-}
+};
 
 module.exports = {
     uploadToiletImg
-}  
+};
