@@ -40,6 +40,12 @@ npm start # before this line, u have to check out the env! like db pass,,, etc
 	- Nodejs 
 		- express, resetAPI
 
+### restfulApi Docs(maybe localhost)
+- [swagger](https://github.com/swagger-api/swagger-node)
+	- ```npm install -g swagger```
+	- https://swagger.io/specification/
+- But, local 환경 조성은 나중에 할듯,, 우선 swagger hub를 사용!
+
 ### DataBase
 - mysql
 - mongoDB
