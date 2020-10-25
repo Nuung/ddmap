@@ -1,5 +1,21 @@
 # DDMap
-모든 화장실에 대한 모든 것, 대똥여지도 - DDMap
+> 모든 화장실에 대한 모든 것, 대똥여지도 - DDMap
+
+###
+
+## Getting Started
+- 시작전 Infra / Stack을 체크하고 환경을 먼저 조성해야 합니다. 
+	- 기본적으로 nodejs, nginx, env, database 모두 환경 설정이 되어야 합니다.
+
+```bash
+
+git clone https://github.com/Nuung/DDmap.git
+cd ddmap-backend
+sudo npm install
+npm start # before this line, u have to check out the env! like db pass,,, etc
+
+```
+
 
 ###
 
