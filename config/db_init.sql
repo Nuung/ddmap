@@ -44,7 +44,8 @@ CREATE TABLE  user (
 );
 
 CREATE TABLE  reviews (
-  id      	   		VARCHAR(60) PRIMARY KEY,  
+  id      	   		VARCHAR(60) PRIMARY KEY,
+  user_id   	    VARCHAR(100),
   toilet_id    		VARCHAR(60),
   title        		VARCHAR(40),
   latitude 			DOUBLE NOT NULL,
@@ -57,11 +58,12 @@ CREATE TABLE  reviews (
   short_detail		VARCHAR(40),
   update_date		DATE,
   created_date		DATE,
+  FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (toilet_id) REFERENCES toilet(id)
 );
 
 CREATE TABLE  bookmark (
-  id      	    INTEGER auto_increment PRIMARY KEY,  
+  id      	    INTEGER auto_increment PRIMARY KEY,   # 고유
   user_id   	VARCHAR(100),
   toilet_id     VARCHAR(60),
   created_date	DATE,
