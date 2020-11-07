@@ -5,3 +5,6 @@
 # api 명세 도구 Swagger (스웨거)
 - [동빈나짱](https://youtu.be/akbdsrOpQ60)
     - https://youtu.be/ARi-cXdIIj8 이걸 보고 코드 수술 가자 
+
+# Server Status Code 
+- https://developer.mozilla.org/ko/docs/Web/HTTP/Status 
