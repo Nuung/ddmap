@@ -8,7 +8,7 @@ grant all privileges on ddmap.* to ddmap@localhost with grant option;
 commit;
 
 USE ddmap;
-CREATE TABLE toilet (
+CREATE TABLE toilets (
   id      			VARCHAR(60) PRIMARY KEY,
   name    			VARCHAR(40),
   latitude  		DOUBLE NOT NULL,
@@ -30,10 +30,10 @@ CREATE TABLE toilet_rank (
   review_number  	INTEGER,
   review_avg_star   DOUBLE,
   update_date		DATE,
-  FOREIGN KEY (toilet_id) REFERENCES toilet(id)
+  FOREIGN KEY (toilet_id) REFERENCES toilets(id)
 );
 
-CREATE TABLE  user (
+CREATE TABLE  users (
   id      	   VARCHAR(100) PRIMARY KEY, # email
   password 	   VARCHAR(300),
   #token        VARCHAR(300),
@@ -58,8 +58,8 @@ CREATE TABLE  reviews (
   short_detail		VARCHAR(40),
   update_date		DATE,
   created_date		DATE,
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (toilet_id) REFERENCES toilet(id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (toilet_id) REFERENCES toilets(id)
 );
 
 CREATE TABLE  bookmark (
@@ -67,8 +67,8 @@ CREATE TABLE  bookmark (
   user_id   	VARCHAR(100),
   toilet_id     VARCHAR(60),
   created_date	DATE,
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (toilet_id) REFERENCES toilet(id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (toilet_id) REFERENCES toilets(id)
 );
 
 CREATE TABLE  report (
@@ -79,7 +79,7 @@ CREATE TABLE  report (
   report_review_id	  VARCHAR(60),
   reported_date		  DATE,
   reported_clear_date DATE,
-  FOREIGN KEY (report_user_id) REFERENCES user(id),
-  FOREIGN KEY (reported_user_id) REFERENCES user(id),
+  FOREIGN KEY (report_user_id) REFERENCES users(id),
+  FOREIGN KEY (reported_user_id) REFERENCES users(id),
   FOREIGN KEY (report_review_id) REFERENCES reviews(id)
 );

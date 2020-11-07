@@ -20,10 +20,12 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // create database using schema, if tables not exists // table 구조!
+db.Toilet = require('./entity/Toilet_entity')(sequelize, Sequelize);
 db.User = require('./entity/User_entity')(sequelize, Sequelize); 
+
+/*
 db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
 db.Bookmark = require('./entity/Bookmark_entity')(sequelize, Sequelize);
-db.Toilet = require('./entity/Toilet_entity')(sequelize, Sequelize);
 db.Reports = require('./entity/Reports_entity')(sequelize, Sequelize);
 db.Rank = require('./entity/Rank_entity')(sequelize , Sequelize); 
 
@@ -49,5 +51,6 @@ db.Bookmark.belongsTo(db.User);
 
 // 1 : 1 Bookmark and toilet 
 db.Bookmark.belongsTo(db.Toilet); 
+*/
 
 module.exports = db;

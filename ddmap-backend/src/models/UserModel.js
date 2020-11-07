@@ -7,12 +7,12 @@ class UserModel {
     async saveUserByLocalId(data){
 
         await User.create({
-        id: data.id, 
-        profile_icon: data.profile_icon, 
-        nic_name: data.nic_name,
-        gender: data.gender, 
-        password: data.password ,
-        salt: data.salt
+            id: data.id, 
+            profile_icon: data.profile_icon, 
+            nic_name: data.nic_name,
+            gender: data.gender, 
+            password: data.password,
+            salt: data.salt
         })
     } 
     //유저 id 중복 확인 
