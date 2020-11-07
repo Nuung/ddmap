@@ -5,9 +5,11 @@ class ToiletModel{
 
     async registerNewToilet(data){
 
-        console.log("register33")
+        console.log("register33 in ToiletModel")
 
         try{
+            console.log(data);
+
             Toilet.create({
                 name : data.name, 
                 latitude : data.latitude, 
