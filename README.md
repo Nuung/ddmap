@@ -3,7 +3,6 @@
 
 - Quick Project To do : [Click](https://github.com/Nuung/DDmap/projects/1)
 
-###
 
 ## Getting Started
 - 시작전 Infra / Stack을 체크하고 환경을 먼저 조성해야 합니다. 
@@ -18,8 +17,12 @@ npm start # before this line, u have to check out the env! like db pass,,, etc
 
 ```
 
+</br>
 
-###
+------------
+
+</br>
+
 
 ## Design and Architecture about Project
 
@@ -38,8 +41,11 @@ npm start # before this line, u have to check out the env! like db pass,,, etc
 - MVC patten으로 최대한 지향했으며, 최대한 restful하게 하려고 노력함. mysql db가 메인 db로 적절한 사용을 위해 ***ORM으로 sequelize***를 사용함 
 
 
-###
+</br>
 
+------------
+
+</br>
 
 
 ## Infra / Stack
