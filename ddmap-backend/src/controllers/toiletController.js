@@ -15,18 +15,19 @@ const registerNewToilet =  async (req, res) =>{
   
     console.log("image Name " + image);
     const {
-            name,
-            latitude, 
-            longitude, 
-            goo_name,
-            dong_name,
-            street_num_main,
-            street_num_sub,
-            detail,
+        id,
+        name,
+        latitude, 
+        longitude, 
+        goo_name,
+        dong_name,
+        street_num_main,
+        street_num_sub,
+        detail,
     } = req.body
 
 
-    const toilet = {name, latitude, longitude, goo_name, dong_name,
+    const toilet = {id, name, latitude, longitude, goo_name, dong_name,
     street_num_main, street_num_sub, detail, image};
 
     try{
@@ -49,7 +50,9 @@ const registerNewToilet =  async (req, res) =>{
             res.status(401).json({data});
         }
 
-    }catch(error){
+    }
+    catch(error){
+        console.log(error);
         const errorMessage = "등록에 실패하였습니다."
         return res.status(401).json({errorMessage})
     }

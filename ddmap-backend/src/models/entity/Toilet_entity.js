@@ -1,8 +1,8 @@
 
 
 module.exports = (sequelize, DataTypes) => (
-
-    sequelize.define('toilet',{
+ 
+    sequelize.define('toilets',{
         id: {
             type: DataTypes.INTEGER,
             allowNUll: false, 

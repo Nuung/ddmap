@@ -6,11 +6,12 @@ class ToiletModel{
     async registerNewToilet(data){
 
         console.log("register33 in ToiletModel")
+        console.log(Toilet);
 
         try{
             console.log(data);
-
             Toilet.create({
+                id: data.id,
                 name : data.name, 
                 latitude : data.latitude, 
                 longitude : data.longitude, 
@@ -20,17 +21,13 @@ class ToiletModel{
                 street_num_main : data.street_num_main, 
                 street_num_sub : data.street_num_sub, 
                 detail : data.detail 
-            } )
-            
+            });
             return true 
 
-        }catch(error){
-
-            throw new Error(error)
-             
         }
-       
-      
+        catch(error){
+            throw new Error(error)
+        } 
     }
 
     // query 작성할 일이 없음!!
