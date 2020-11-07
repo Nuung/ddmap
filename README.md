@@ -21,6 +21,16 @@ npm start # before this line, u have to check out the env! like db pass,,, etc
 
 ###
 
+## Design and Architecture about Project
+
+### Mysql ERD
+
+
+###
+
+
+
+
 ## Infra / Stack
 
 ### AWS EC2 ubuntu 18.0.*
