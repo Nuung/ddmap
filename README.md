@@ -25,9 +25,20 @@ npm start # before this line, u have to check out the env! like db pass,,, etc
 
 ### Mysql ERD
 
+<div align = "center">
+	<img src="https://github.com/Nuung/DDmap/blob/master/dev-note-md/images/ddmap_ERD_v0.1.png" width="70%" />
+</div>
+
+- 초기 모델 v0.1 ERD (2020.06 ~), 이미지와 현재 개발 DB 관계는 다를 수 있음
+	- 가장 핵심적인 관계는 Toilet table과 review임. 1 : 1 or N의 관계
+
+
+### Architecture
+
+- MVC patten으로 최대한 지향했으며, 최대한 restful하게 하려고 노력함. mysql db가 메인 db로 적절한 사용을 위해 ***ORM으로 sequelize***를 사용함 
+
 
 ###
-
 
 
 
