@@ -1,4 +1,4 @@
-'user strict'
+'user strict';
 
 const { _hasPrimaryKeys } = require("sequelize/lib/model");
 
@@ -12,7 +12,6 @@ module.exports = (sequelize, DataTypes) => (
         id:{
             type: DataTypes.STRING(40), 
             allowNull: false, 
-            unique: true,
             primaryKey: true
         },
         salt:{

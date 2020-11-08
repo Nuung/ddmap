@@ -8,7 +8,10 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../../config/config.json')[env];
 const db = {};
 
-let sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 Object.keys(db).forEach(modelName => {
     if (db[modelName].associate) {
@@ -16,15 +19,18 @@ Object.keys(db).forEach(modelName => {
     }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
 // create database using schema, if tables not exists // table 구조!
 db.Toilet = require('./entity/Toilet_entity')(sequelize, Sequelize);
 db.User = require('./entity/User_entity')(sequelize, Sequelize); 
+db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
+
+db.User.hasMany(db.Reviews); 
+db.Reviews.belongsTo(db.User);
+
+db.Toilet.hasMany(db.Reviews); 
+db.Reviews.belongsTo(db.Toilet); 
 
 /*
-db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
 db.Bookmark = require('./entity/Bookmark_entity')(sequelize, Sequelize);
 db.Reports = require('./entity/Reports_entity')(sequelize, Sequelize);
 db.Rank = require('./entity/Rank_entity')(sequelize , Sequelize); 
