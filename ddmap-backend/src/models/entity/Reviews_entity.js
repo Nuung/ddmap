@@ -3,28 +3,33 @@ module.exports = (sequelize, DataTypes) => (
 
     sequelize.define('reviews',{
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(40),
             allowNUll: false, 
-            unique: true, 
-            primaryKey: true, 
-            autoIncrement: true 
+            primaryKey: true
+        },
+        userId: {
+            type: DataTypes.STRING(40),
+            allowNull: false
+        },
+        toiletId: {
+            type: DataTypes.STRING(40),
+            allowNull: false
         },
         title: {
             type: DataTypes.STRING(100),
-            allowNull: true, 
-            unique: false 
+            allowNull: true
         },
         latitude: {
             type: DataTypes.DOUBLE, 
-            allowNull: false,
+            allowNull: false
         },
         longitude: {
             type: DataTypes.DOUBLE, 
             allowNull: false 
         },
         image: {
-            type: DataTypes.STRING(200), 
-            allowNull: true, 
+            type: DataTypes.STRING(300), 
+            allowNull: true
         },
         clean_of_toilet : {
             type: DataTypes.INTEGER, 
@@ -35,16 +40,24 @@ module.exports = (sequelize, DataTypes) => (
             allowNull: false 
         },
         is_old : {
-            type: DataTypes.INTEGER, 
+            type: DataTypes.TINYINT, 
             allowNull: false
         },
         is_secret: {
-            type: DataTypes.INTEGER, 
+            type: DataTypes.TINYINT, 
             allowNull: false 
         }, 
         shot_detail : {
             type: DataTypes.STRING(200), 
             allowNull: true
+        },
+        update_date : {
+            type: DataTypes.DATE, 
+            allowNull: false
+        },
+        created_date : {
+            type: DataTypes.DATE, 
+            allowNull: false
         }
     })
 

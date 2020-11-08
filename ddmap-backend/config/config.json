@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "sik8856",
-    "password": "1q2w3e4r",
+    "username": "root",
+    "password": "45812Qlgks!",
     "database": "ddmap",
-    "host": "3.35.2.138",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {

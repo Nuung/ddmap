@@ -9,6 +9,7 @@ const cors = require('cors');
 const escapeJSON = require('escape-json-node'); // 
 const authRouter = require('./src/routes/auth'); 
 
+// ORM - sequelize
 const sequelize = require('./src/models').sequelize;
 sequelize.sync(); 
 

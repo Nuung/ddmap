@@ -1,14 +1,12 @@
-
+'user strict';
 
 module.exports = (sequelize, DataTypes) => (
-
-    sequelize.define('toilet',{
+ 
+    sequelize.define('toilets',{
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(40),
             allowNUll: false, 
-            unique: true, 
-            primaryKey: true, 
-            autoIncrement: true 
+            primaryKey: true
         },
         name: {
             type: DataTypes.STRING(100),
