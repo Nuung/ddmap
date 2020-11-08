@@ -7,14 +7,6 @@ module.exports = (sequelize, DataTypes) => (
             allowNUll: false, 
             primaryKey: true
         },
-        userId: {
-            type: DataTypes.STRING(40),
-            allowNull: false
-        },
-        toiletId: {
-            type: DataTypes.STRING(40),
-            allowNull: false
-        },
         title: {
             type: DataTypes.STRING(100),
             allowNull: true
@@ -50,14 +42,6 @@ module.exports = (sequelize, DataTypes) => (
         shot_detail : {
             type: DataTypes.STRING(200), 
             allowNull: true
-        },
-        update_date : {
-            type: DataTypes.DATE, 
-            allowNull: false
-        },
-        created_date : {
-            type: DataTypes.DATE, 
-            allowNull: false
         }
     })
 

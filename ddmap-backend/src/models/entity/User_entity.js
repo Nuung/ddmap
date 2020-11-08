@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => (
             unique: true 
         }, 
         gender: {
-            type: DataTypes.INTEGER, 
+            type: DataTypes.TINYINT, 
             allwoNUll: false
         },
         password: {

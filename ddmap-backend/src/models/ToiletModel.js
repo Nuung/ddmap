@@ -1,16 +1,12 @@
-
-const Toilet = require('./entity/Toilet_entity').Toilet;
+'user strict';
+const Toilet = require('.').Toilet;
 
 class ToiletModel{
 
     async registerNewToilet(data){
-
-        console.log("register33 in ToiletModel")
-        console.log(Toilet);
-
+        console.dir(Toilet);
         try{
-            console.log(data);
-            Toilet.create({
+            await db.Toilet.create({
                 id: data.id,
                 name : data.name, 
                 latitude : data.latitude, 
@@ -22,8 +18,7 @@ class ToiletModel{
                 street_num_sub : data.street_num_sub, 
                 detail : data.detail 
             });
-            return true 
-
+            return true;
         }
         catch(error){
             throw new Error(error)

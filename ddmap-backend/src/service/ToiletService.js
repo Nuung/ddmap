@@ -1,10 +1,14 @@
 const ToiletModel = require('../models/ToiletModel')
 
 class ToiletService{
+
     constructor(){
         this.ToiletModel = new ToiletModel();
     }
     async registerToiletData(data){
+        
+        console.dir(data);
+
         try{
             const toilet = await this.ToiletModel.registerNewToilet(data);
             console.log("register22");
