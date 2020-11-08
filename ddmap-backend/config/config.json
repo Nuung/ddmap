@@ -7,10 +7,10 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "sik8856",
-    "password": "1q2w3e4r",
+    "username": "dmap",
+    "password": "ddmap!!",
     "database": "database_test",
-    "host": "3.35.2.138",
+    "host": "52.231.203.145",
     "dialect": "mysql"
   },
   "production": {
