@@ -1,4 +1,4 @@
-'user strict'
+'user strict';
 
 const { _hasPrimaryKeys } = require("sequelize/lib/model");
 
