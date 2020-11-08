@@ -12,27 +12,30 @@ const db = {};
 // create database using schema, if tables not exists // table 구조!
 db.Toilet = require('./entity/Toilet_entity')(sequelize, Sequelize);
 db.User = require('./entity/User_entity')(sequelize, Sequelize); 
+db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
 
-// db.Toilet.create({
-//     id: "2",
-//     name : "dfgdtest", 
-//     latitude : 36.213, 
-//     longitude : 126.453, 
-//     image : "test", 
-//     goo_name : "GOsdfsfOO", 
-//     dong_name : "data.dong_name", 
-//     street_num_main : 1234, 
-//     street_num_sub : 234, 
-//     detail : "data.detail"
-// });
+db.User.hasMany(db.Reviews, {foreignKey: 'userId', sourceKey: 'id'}); 
+db.Reviews.belongsTo(db.User, {foreignKey: 'userId', targetKey: 'id'});
+db.Toilet.hasMany(db.Reviews, {foreignKey: 'toiletId', sourceKey: 'id'}); 
+db.Reviews.belongsTo(db.Toilet, {foreignKey: 'toiletId', targetKey: 'id'});
 
-// db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
+// Store.hasMany(Review, {foreignKey: 'storeCd', sourceKey: 'storeCd'});
+// Review.belongsTo(Store, {foreignKey: 'storeCd', targetKey: 'storeCd'});
 
-// db.User.hasMany(db.Reviews); 
-// db.Reviews.belongsTo(db.User);
 
-// db.Toilet.hasMany(db.Reviews); 
+// try {
+//     db.User.hasMany(db.Reviews); 
+//     db.Toilet.hasMany(db.Reviews); 
+//     db.Reviews.belongsTo(db.User, {foreignKey: 'userId', targetKey: 'id'});
+//     db.Reviews.belongsTo(db.Toilet, {foreignKey: 'toiletId', targetKey: 'id'});    
+// } catch (error) {
+//     console.log(error);
+// }
+
+
+
 // db.Reviews.belongsTo(db.Toilet); 
+
 
 /*
 db.Bookmark = require('./entity/Bookmark_entity')(sequelize, Sequelize);
