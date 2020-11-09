@@ -2,9 +2,6 @@
 
 const { _hasPrimaryKeys } = require("sequelize/lib/model");
 
-// const { sequelize } = require(".")
-// const { DataTypes } = require("sequelize/types")
-
 
 module.exports = (sequelize, DataTypes) => (
   
@@ -20,7 +17,7 @@ module.exports = (sequelize, DataTypes) => (
         },
         profile_icon : {
             type: DataTypes.STRING(200), 
-            allowNUll: true
+            allowNull: true
         },
         nic_name: {
             type: DataTypes.STRING(40), 
@@ -29,11 +26,11 @@ module.exports = (sequelize, DataTypes) => (
         }, 
         gender: {
             type: DataTypes.INTEGER, 
-            allwoNUll: false
+            allwoNull: false
         },
         password: {
             type: DataTypes.STRING(200), 
-            allowNUll: false,
+            allowNull: false,
         }
     },
     {

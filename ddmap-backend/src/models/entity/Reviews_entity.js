@@ -1,17 +1,18 @@
 
 module.exports = (sequelize, DataTypes) => (
 
-    sequelize.define('reviews',{
+sequelize.define('reviews',{
         id: {
             type: DataTypes.STRING(40),
             allowNUll: false, 
             primaryKey: true
         },
-        userId: {
+        toiletId:{
             type: DataTypes.STRING(40),
-            allowNull: false
+            allowNull: false,
+            unique: true 
         },
-        toiletId: {
+        userId: {
             type: DataTypes.STRING(40),
             allowNull: false
         },
@@ -59,6 +60,12 @@ module.exports = (sequelize, DataTypes) => (
             type: DataTypes.DATE, 
             allowNull: false
         }
-    })
-
+    },{
+        charset:'utf8',
+        collate:'utf8_general_ci'
+    }, {indexes :[
+        {
+        unique:true,
+        fields: ['toiletId']
+    }]})
 );

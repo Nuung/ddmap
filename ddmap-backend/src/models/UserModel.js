@@ -1,12 +1,13 @@
 
-const User = require('./entity/User_entity').User
+const User = require('.').User
 
 class UserModel {
 
     //유저 생성 
+    
     async saveUserByLocalId(data){
 
-        await User.create({
+        await User.create({     
             id: data.id, 
             profile_icon: data.profile_icon, 
             nic_name: data.nic_name,
@@ -15,8 +16,10 @@ class UserModel {
             salt: data.salt
         })
     } 
+    
     //유저 id 중복 확인 
     async findUserByLocalId(id){
+
 
         const user = await User.findOne({
             where: {

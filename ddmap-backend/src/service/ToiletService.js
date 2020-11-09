@@ -9,6 +9,7 @@ class ToiletService{
             const toilet = await this.ToiletModel.registerNewToilet(data);
             console.log("register22");
             return toilet;
+            
         } catch(error){
             console.log(error);
             throw new Error(error);
