@@ -51,14 +51,6 @@ sequelize.define('reviews',{
         shot_detail : {
             type: DataTypes.STRING(200), 
             allowNull: true
-        },
-        update_date : {
-            type: DataTypes.DATE, 
-            allowNull: false
-        },
-        created_date : {
-            type: DataTypes.DATE, 
-            allowNull: false
         }
     },{
         charset:'utf8',

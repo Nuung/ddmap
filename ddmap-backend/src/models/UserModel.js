@@ -1,4 +1,4 @@
-
+'user strict';
 const User = require('.').User
 
 class UserModel {

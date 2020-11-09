@@ -1,4 +1,3 @@
-
 const Toilet = require('.').Toilet;
 
 class ToiletModel{
@@ -21,7 +20,7 @@ class ToiletModel{
                 detail : data.detail 
 
             });
-
+            return true
         }
         catch(error){
             throw new Error(error)
