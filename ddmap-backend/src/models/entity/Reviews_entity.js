@@ -55,9 +55,5 @@ sequelize.define('reviews',{
     },{
         charset:'utf8',
         collate:'utf8_general_ci'
-    }, {indexes :[
-        {
-        unique:true,
-        fields: ['toiletId']
-    }]})
+    })
 );

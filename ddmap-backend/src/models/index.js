@@ -25,7 +25,10 @@ db.Toilet = require('./entity/Toilet_entity')(sequelize, Sequelize);
 db.User = require('./entity/User_entity')(sequelize, Sequelize); 
 db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
 
-db.Toilet.hasMany(db.Reviews)   
+db.Toilet.hasMany(db.Reviews);
+db.User.hasMany(db.Reviews);
+db.Reviews.belongsTo(db.Toilet);
+db.Reviews.belongsTo(db.User);
 
 module.exports = db;
 
