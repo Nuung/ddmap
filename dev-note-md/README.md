@@ -99,3 +99,9 @@
     FOREIGN KEY (`toiletId`) REFERENCES `toilets` (`id`)) ENGINE=InnoDB;
 
     ~~~~
+
+    - 놀랍게도 entity 를 정의할때 charset을 맞추지 않아서 그랬었다. ORM이 존재하는 이유에 대해서 다시 생각해보는 계기가 되었다.
+        - 사실 필요 하지도 않는 ORM을 괜히 쓰고자 하는 오버엔지니어링이 아닐까 싶은 현타..
+
+
+- 가 
