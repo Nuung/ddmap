@@ -13,19 +13,43 @@ class ReviewService {
             return review;
             
         } catch(error){
-            console.log(error);
+            console.log("Service registerReviewData: " + error);
             throw new Error(error);
         }
     }
 
-    static async findOneReview(targetId){
+    static async findOneReviewById(id){
         try{
             console.log("----service: review find by id");
-            const result = await ReviewModel.findOneReview(targetId);
+            const result = await ReviewModel.findOneReviewById(id);
             return result;
             
         } catch(error){
-            console.log(error);
+            console.log("Service findOneReviewById: " + error);
+            throw new Error(error);
+        }
+    }
+
+    static async findOneReviewByToiletId(toiletId){
+        try{
+            console.log("----service: review find by toilet id");
+            const result = await ReviewModel.findOneReviewByToiletId(toiletId);
+            return result;
+            
+        } catch(error){
+            console.log("Service findOneReviewByToiletId: " + error);
+            throw new Error(error);
+        }
+    }
+
+    static async findOneReviewByUserId(userId){
+        try{
+            console.log("----service: review find by user id");
+            const result = await ReviewModel.findOneReviewByUserId(userId);
+            return result;
+            
+        } catch(error){
+            console.log("Service findOneReviewByUserId: " + error);
             throw new Error(error);
         }
     }
