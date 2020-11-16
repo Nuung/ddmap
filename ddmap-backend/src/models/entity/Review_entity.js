@@ -9,8 +9,8 @@ sequelize.define('reviews',{
         },
         toiletId:{
             type: DataTypes.STRING(40),
-            allowNull: false,
-            unique: true 
+            allowNull: false
+            // unique: true 
         },
         userId: {
             type: DataTypes.STRING(40),
