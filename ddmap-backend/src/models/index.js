@@ -23,9 +23,12 @@ Object.keys(db).forEach(modelName => {
 
 db.Toilet = require('./entity/Toilet_entity')(sequelize, Sequelize);
 db.User = require('./entity/User_entity')(sequelize, Sequelize); 
-db.Reviews = require('./entity/Reviews_entity')(sequelize, Sequelize);
+db.Review = require('./entity/Review_entity')(sequelize, Sequelize);
 
-db.Toilet.hasMany(db.Reviews)   
+db.Toilet.hasMany(db.Review);
+db.User.hasMany(db.Review);
+db.Review.belongsTo(db.Toilet);
+db.Review.belongsTo(db.User);
 
 module.exports = db;
 
