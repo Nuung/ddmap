@@ -42,16 +42,59 @@ class ReviewModel {
         }
     }
 
-    // query 작성할 일이 없음!!
-    static async findOneReview(id) {
-        console.log(`----model: review find by id: ${id}`);
-        const review = await Review.findAll({
-            where: {
-                id
-            },
-            raw: true
-        })
-        return review
+    static async findOneReviewById(id) {
+        try {
+            console.log(`----model: review find by id: ${id}`);
+            const review = await Review.findAll({
+                where: {
+                    id
+                },
+                raw: true
+            });
+            return review;
+        } catch (error) {
+            throw new Error("Model findOneReviewById: " + error);
+        }
+    }
+
+    static async findOneReviewByToiletId(toiletId) {
+        try {
+            console.log(`----model: review find by toilet id: ${toiletId}`);
+            const review = await Review.findAll({
+                where: {
+                    toiletId
+                },
+                raw: true
+            });
+            return review;
+        } catch (error) {
+            throw new Error("Model findOneReviewBytoiletId: " + error);
+        }
+    }
+
+    static async findOneReviewByUserId(userId) {
+        try {
+            console.log(`----model: review find by user id: ${userId}`);
+            const review = await Review.findAll({
+                where: {
+                    userId
+                },
+                raw: true
+            });
+            return review;
+        } catch (error) {
+            throw new Error("Model findOneReviewByuserId: " + error);
+        }
+    }
+
+    // Getter And Setter
+
+    get title() {
+        return this._title;
+    }
+
+    set title(title) {
+        this._title = title;
     }
 }
 

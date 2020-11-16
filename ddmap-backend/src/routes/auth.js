@@ -46,11 +46,15 @@ router.post('/local/toilet/register', uploadToiletImg, registerNewToilet);
 
 const {
     registerNewReview,
-    findOneReview,
+    findOneReviewById,
+    findOneReviewByToiletId,
+    findOneReviewByUserId
 } = require('../controllers/reviewController');
 
-router.get('/local/user/review/:id', findOneReview);
 router.post('/local/user/review', uploadToiletImg, registerNewReview);
+router.get('/local/review/:id', findOneReviewById);
+router.get('/local/toilet/review/:id', findOneReviewByToiletId);
+router.get('/local/user/review/:id', findOneReviewByUserId);
 
 
 module.exports = router; 
