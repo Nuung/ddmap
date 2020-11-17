@@ -9,8 +9,8 @@ sequelize.define('reviews',{
         },
         toiletId:{
             type: DataTypes.STRING(40),
-            allowNull: false,
-            unique: true 
+            allowNull: false
+            // unique: true 
         },
         userId: {
             type: DataTypes.STRING(40),
@@ -55,9 +55,5 @@ sequelize.define('reviews',{
     },{
         charset:'utf8',
         collate:'utf8_general_ci'
-    }, {indexes :[
-        {
-        unique:true,
-        fields: ['toiletId']
-    }]})
+    })
 );

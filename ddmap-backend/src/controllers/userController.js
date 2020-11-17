@@ -3,8 +3,6 @@
 const UserService = require('../service/UserService')
 
 
-
-
 const localSignup =  async ( req , res ) =>{
     const userService = new UserService();
     console.log("UserPostTest")

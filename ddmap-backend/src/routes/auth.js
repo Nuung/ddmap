@@ -1,11 +1,24 @@
-const express = require('express'); 
-const bcrypt = require('bcrypt'); 
-const User  = require('../models/UserModel'); 
-const multer = require('multer'); 
+const express = require('express');
+const bcrypt = require('bcrypt');
+const User = require('../models/UserModel');
+const multer = require('multer');
+
+// --------------- middlewares --------------- //
 
 const {
     uploadToiletImg
-    } = require('../middlewares/uploadToiletImg')
+} = require('../middlewares/uploadToiletImg');
+
+const {
+    verifyToken
+} = require('../middlewares/auth');
+
+console.log("-auth router init-");
+const router = express.Router();
+
+
+// 나중에 라우터 분할 다 해야함! 
+// --------------- user --------------- //
 
 const {
     localSignup,
@@ -15,9 +28,13 @@ const {
     kakaoSigncallBack
 } = require('../controllers/userController')
 
-const {
-    verifyToken
-}  = require('../middlewares/auth')
+router.post('/local/signup', localSignup);
+router.post('/local/signin', localSignin);
+router.post('/local/upload/image', uploadToiletImg);
+router.get('/local/user/info', verifyToken, getUserData);
+
+
+// --------------- toilet --------------- //
 
 const {
     registerNewToilet,
@@ -25,8 +42,8 @@ const {
     getToiletInfobyId
 } = require('../controllers/toiletController')
 
-console.log("appTest")
-const router = express.Router();
+
+router.post('/local/toilet/register', uploadToiletImg, registerNewToilet);
 
 
 router.post('/local/signup', localSignup)
