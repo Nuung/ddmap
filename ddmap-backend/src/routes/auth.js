@@ -10,7 +10,9 @@ const {
 const {
     localSignup,
     localSignin,
-    getUserData
+    getUserData,
+    kakaoSignin,
+    kakaoSigncallBack
 } = require('../controllers/userController')
 
 const {
@@ -18,7 +20,9 @@ const {
 }  = require('../middlewares/auth')
 
 const {
-    registerNewToilet
+    registerNewToilet,
+    getNearToilets,
+    getToiletInfobyId
 } = require('../controllers/toiletController')
 
 console.log("appTest")
@@ -28,8 +32,10 @@ const router = express.Router();
 router.post('/local/signup', localSignup)
 router.post('/local/signin', localSignin) 
 router.post('/local/upload/image', uploadToiletImg)
-router.get('/local/user/info' ,verifyToken ,getUserData)
+router.get('/local/user' ,verifyToken ,getUserData)
 router.post('/local/toilet/register' ,uploadToiletImg ,registerNewToilet )
-
-
+router.get('/toilet/position',getNearToilets)
+router.get('/local/toilet/id/:id', getToiletInfobyId)
+router.post('/local/login/oauth',kakaoSignin)
+router.get('/oauth/kakao/callback',kakaoSigncallBack )
 module.exports = router; 
