@@ -4,7 +4,6 @@ class ToiletModel{
 
     async registerNewToilet(data){
 
-
         try{
 
             await Toilet.create({
