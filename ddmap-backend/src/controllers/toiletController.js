@@ -9,10 +9,6 @@ const registerNewToilet =  async (req, res) =>{
 
     const image = null;
 
-    // if(req.file){
-    //     image = req.file.name
-    // }
-  
     console.log("image Name " + image);
     const {
         id,
@@ -59,4 +55,57 @@ const registerNewToilet =  async (req, res) =>{
 
 }
 
-module.exports = {registerNewToilet}
+
+const getNearToilets = async ( req, res ) => {
+
+    const lat = req.query.lat; 
+    const lon = req.query.lon; 
+
+    try{
+        const toiletService = new ToiletService()
+        
+        const toiletData = await toiletService.getNearToilets(lat, lon)
+        
+        const data = {
+             toiletData
+        }
+
+        res.status(201).json({data});
+
+    }catch(error){
+        const data = {
+            message : '일시적인 서버 오류입니다.'
+        }
+
+        res.status(401).json({data});
+    }
+
+
+}
+
+
+const getToiletInfobyId = async (req, res) =>{
+
+    const id = req.params.id
+
+    try{
+        const toiletService = new ToiletService()
+        
+        const toiletData = await toiletService.getToiletInfobyId(id)
+        
+        const data = {
+             toiletData
+        }
+
+        res.status(201).json({data});
+
+    }catch(error){
+        const data = {
+            message : '일시적인 서버 오류입니다.'
+        }
+
+        res.status(401).json({data});
+    }
+} 
+
+module.exports = {registerNewToilet, getNearToilets, getToiletInfobyId}

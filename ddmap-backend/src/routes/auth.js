@@ -23,8 +23,10 @@ const router = express.Router();
 const {
     localSignup,
     localSignin,
-    getUserData
-} = require('../controllers/userController');
+    getUserData,
+    kakaoSignin,
+    kakaoSigncallBack
+} = require('../controllers/userController')
 
 router.post('/local/signup', localSignup);
 router.post('/local/signin', localSignin);
@@ -35,26 +37,22 @@ router.get('/local/user/info', verifyToken, getUserData);
 // --------------- toilet --------------- //
 
 const {
-    registerNewToilet
-} = require('../controllers/toiletController');
+    registerNewToilet,
+    getNearToilets,
+    getToiletInfobyId
+} = require('../controllers/toiletController')
 
 
 router.post('/local/toilet/register', uploadToiletImg, registerNewToilet);
 
 
-// --------------- review --------------- //
-
-const {
-    registerNewReview,
-    findOneReviewById,
-    findOneReviewByToiletId,
-    findOneReviewByUserId
-} = require('../controllers/reviewController');
-
-router.post('/local/user/review', uploadToiletImg, registerNewReview);
-router.get('/local/review/:id', findOneReviewById);
-router.get('/local/toilet/review/:id', findOneReviewByToiletId);
-router.get('/local/user/review/:id', findOneReviewByUserId);
-
-
+router.post('/local/signup', localSignup)
+router.post('/local/signin', localSignin) 
+router.post('/local/upload/image', uploadToiletImg)
+router.get('/local/user' ,verifyToken ,getUserData)
+router.post('/local/toilet/register' ,uploadToiletImg ,registerNewToilet )
+router.get('/toilet/position',getNearToilets)
+router.get('/local/toilet/id/:id', getToiletInfobyId)
+router.post('/local/login/oauth',kakaoSignin)
+router.get('/oauth/kakao/callback',kakaoSigncallBack )
 module.exports = router; 

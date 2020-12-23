@@ -2,6 +2,7 @@
 
 const UserService = require('../service/UserService')
 
+
 const localSignup =  async ( req , res ) =>{
     const userService = new UserService();
     console.log("UserPostTest")
@@ -112,7 +113,7 @@ const localSignin = async (req , res ) => {
 const getUserData = async(req, res) => {
     
     const id = req.token.userId 
-    
+
     const userService = new UserService(); 
 
     const userData =  await userService.getUserDataByLocalId(id)
@@ -140,10 +141,45 @@ const getUserData = async(req, res) => {
 }
 
 
+const kakaoSignin = async (req , res) =>{
+
+    var passport = require('passport');
+    var KakaoStrategy = require('passport-kakao').Strategy;
+    const env = require('dotenv').config();
+
+    console.log("kakaoLogin")
+
+    passport.authenticate('login-kakao')
+
+    passport.use('login-kakao', new KakaoStrategy({
+        clientID : process.env.KAKAO_ID,
+        callbackURL :'http://localhost:3000/oauth'
+    },
+
+    function(accessToken, refreshToken, profile, done) {
+        console.log(profile);
+        return done(null, profile);
+    }
+    
+    ))
+} 
+
+const kakaoSigncallBack = async (req, res) =>{
+
+    passport.authenticate('login-kakao', {
+        successRedirect: '/main', 
+        failureRedirect: '/'
+    })
+
+}
+
+
 module.exports = {
     localSignup,
     localSignin,
-    getUserData
+    getUserData,
+    kakaoSignin,
+    kakaoSigncallBack
 }
 
 
