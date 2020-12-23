@@ -2,11 +2,7 @@ const ReviewModel = require('../models/ReviewModel')
 
 class ReviewService {
 
-    constructor(data){
-        this.ReviewModel = new ReviewModel(data);
-    }
-
-    async registerReviewData(){
+    async registerReviewData(data){
         try{
             console.log("----service: review register");
             const review = await this.ReviewModel.registerNewReview();
@@ -18,7 +14,7 @@ class ReviewService {
         }
     }
 
-    static async findOneReviewById(id){
+    async findOneReviewById(id){
         try{
             console.log("----service: review find by id");
             const result = await ReviewModel.findOneReviewById(id);
@@ -30,7 +26,7 @@ class ReviewService {
         }
     }
 
-    static async findOneReviewByToiletId(toiletId){
+    async findOneReviewByToiletId(toiletId){
         try{
             console.log("----service: review find by toilet id");
             const result = await ReviewModel.findOneReviewByToiletId(toiletId);
@@ -42,7 +38,7 @@ class ReviewService {
         }
     }
 
-    static async findOneReviewByUserId(userId){
+    async findOneReviewByUserId(userId){
         try{
             console.log("----service: review find by user id");
             const result = await ReviewModel.findOneReviewByUserId(userId);
