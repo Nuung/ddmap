@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req, res, next) => {
+    
     // read the token from header or url or cookie['user-login']
-    const token = req.headers['x-access-token'] || req.query.token || req.cookies['user-login'];
+    const token = req.headers['x-access-token'] || req.query.token; // || req.cookies['user-login'];
 
     // token does not exist
     if (!token || token === null || token === "") {

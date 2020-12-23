@@ -9,29 +9,8 @@ const {
     uploadToiletImg
 } = require('../middlewares/uploadToiletImg');
 
-const {
-    verifyToken
-} = require('../middlewares/auth');
-
-console.log("-auth router init-");
+console.log(" - auth router init - ");
 const router = express.Router();
-
-
-// 나중에 라우터 분할 다 해야함! 
-// --------------- user --------------- //
-
-const {
-    localSignup,
-    localSignin,
-    getUserData,
-    kakaoSignin,
-    kakaoSigncallBack
-} = require('../controllers/userController')
-
-router.post('/local/signup', localSignup);
-router.post('/local/signin', localSignin);
-router.post('/local/upload/image', uploadToiletImg);
-router.get('/local/user/info', verifyToken, getUserData);
 
 
 // --------------- toilet --------------- //
@@ -40,19 +19,15 @@ const {
     registerNewToilet,
     getNearToilets,
     getToiletInfobyId
-} = require('../controllers/toiletController')
+} = require('../controllers/toiletController');
 
 
 router.post('/local/toilet/register', uploadToiletImg, registerNewToilet);
 
-
-router.post('/local/signup', localSignup)
-router.post('/local/signin', localSignin) 
-router.post('/local/upload/image', uploadToiletImg)
-router.get('/local/user' ,verifyToken ,getUserData)
-router.post('/local/toilet/register' ,uploadToiletImg ,registerNewToilet )
-router.get('/toilet/position',getNearToilets)
+// 이 API를 여러 군대에서 사용해야 하면 upload 이미지를 대표 라우팅 (app js에서 따로 빼내서 또는 파일로 만들어서 또는 미들웨어처럼) 하는 방향이 좋을 것 같습니다.
+// router.post('/local/upload/image', uploadToiletImg)
+router.post('/local/toilet/register', uploadToiletImg, registerNewToilet)
+router.get('/toilet/position', getNearToilets)
 router.get('/local/toilet/id/:id', getToiletInfobyId)
-router.post('/local/login/oauth',kakaoSignin)
-router.get('/oauth/kakao/callback',kakaoSigncallBack )
+
 module.exports = router; 
