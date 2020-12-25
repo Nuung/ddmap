@@ -1,17 +1,9 @@
 'use strict'
-
-const uploadImage = require('../middlewares/uploadToiletImg');
 const ReviewService = require('../service/ReviewService');
 const { Review } = require('../models');
 
 
 const registerNewReview = async (req, res) => {
-
-    const image = null;
-
-    // if(req.file){
-    //     image = req.file.name
-    // }
 
     try {
         const reviewService = new ReviewService(req.body);
