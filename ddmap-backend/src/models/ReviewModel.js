@@ -1,7 +1,7 @@
 const Review = require('.').Review;
 
 class ReviewModel {
-    
+
     async registerNewReview(data) {
         try {
             await Review.create({
@@ -57,7 +57,7 @@ class ReviewModel {
         }
     }
 
-    async findOneReviewByUserId(userId) {
+    async findReviewsByUserId(userId) {
         try {
             console.log(`----model: review find by user id: ${userId}`);
             const review = await Review.findAll({
