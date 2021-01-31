@@ -6,8 +6,8 @@ const { Review } = require('../models');
 const registerNewReview = async (req, res) => {
 
     try {
-        const reviewService = new ReviewService(req.body);
-        const check = await reviewService.registerReviewData();
+        const reviewService = new ReviewService();
+        const check = await reviewService.registerReviewData(req.body);
 
         if (check) {
             const data = {
@@ -35,8 +35,9 @@ const registerNewReview = async (req, res) => {
 
 const findOneReviewById = async (req, res) => {
     try {
+        const reviewService = new ReviewService();
         console.log(`----controller: review find by id: ${req.params.id}`);
-        const result = await ReviewService.findOneReviewById(req.params.id);
+        const result = await reviewService.findOneReviewById(req.params.id);
         if (result) {
             console.log({ result });
             res.status(201).json({ result });
@@ -58,10 +59,11 @@ const findOneReviewById = async (req, res) => {
 };
 
 
-const findOneReviewByToiletId = async (req, res) => {
+const findReviewsByToiletId = async (req, res) => {
     try {
+        const reviewService = new ReviewService();
         console.log(`----controller: review find by toilet id: ${req.params.id}`);
-        const result = await ReviewService.findOneReviewByToiletId(req.params.id);
+        const result = await reviewService.findReviewsByToiletId(req.params.id);
         if (result) {
             console.log({ result });
             res.status(201).json({ result });
@@ -83,10 +85,11 @@ const findOneReviewByToiletId = async (req, res) => {
 };
 
 
-const findOneReviewByUserId = async (req, res) => {
+const findReviewsByUserId = async (req, res) => {
     try {
+        const reviewService = new ReviewService();
         console.log(`----controller: review find by user id: ${req.params.id}`);
-        const result = await ReviewService.findOneReviewByUserId(req.params.id);
+        const result = await reviewService.findReviewsByUserId(req.params.id);
         if (result) {
             console.log({ result });
             res.status(201).json({ result });
@@ -107,4 +110,4 @@ const findOneReviewByUserId = async (req, res) => {
     }
 };
 
-module.exports = { registerNewReview, findOneReviewById, findOneReviewByToiletId, findOneReviewByUserId };
+module.exports = { registerNewReview, findOneReviewById, findReviewsByToiletId, findReviewsByUserId };

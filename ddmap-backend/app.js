@@ -8,10 +8,10 @@ const cors = require('cors');
 const escapeJSON = require('escape-json-node');
 
 // require Routers
-const authRouter = require('./src/routes/auth');
 const userRouter = require('./src/routes/userRouter');
 const toiletRouter = require('./src/routes/toiletRouter');
-
+const reviewRouter = require('./src/routes/reviewRouter');
+const bookmarkRouter = require('./src/routes/bookmarkRouter');
 
 
 //−−−−−−−−−−−−−−−−− ORM - sequelize Setting −−−−−−−−−−−−−−−−−//
@@ -46,9 +46,10 @@ app.set('jwt-secret', process.env.JWT_SECRET); // set the secret key variable fo
 
 
 //−−−−−−−−−−−−−−−−− API Routing Setting −−−−−−−−−−−−−−−−−//
-app.use('/auth', authRouter);
-userRouter(app); // 위와 차이점은 appjs에서 만든 app을 그대로 이용, routing 내부에서 처리 바로 가능
+userRouter(app); 
 toiletRouter(app);
+reviewRouter(app);
+bookmarkRouter(app);
 
 // image 사용 할 수 있게 만들어주는 static 
 app.use('/img', express.static('uploads'));

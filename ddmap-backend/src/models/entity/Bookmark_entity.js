@@ -1,24 +1,24 @@
+'user strict';
 
-module.exports = (sequelize, dataTypes) =>(
+module.exports = (sequelize, DataTypes) => (
 
     sequelize.define('bookmark', {
-        index :{
-            type: dataTypes.INTEGER, 
-            autoIncrement: true, 
+        index: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
-            allowNull: false,
-            uniuqe: true 
+            allowNull: false
         },
-        
-        user_id: {
-            type: dataTypes.STRING, 
+        userId: {
+            type: DataTypes.STRING(40),
             allowNull: true
-        }, 
-
-        toilet_id : {
-            type: dataTypes.DOUBLE, 
-            allowNull:false
+        },
+        toiletId: {
+            type: DataTypes.STRING(40),
+            allowNull: false
         }
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_general_ci'
     })
-
 );
