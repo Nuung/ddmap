@@ -18,8 +18,7 @@ class ToiletModel{
                 dong_name : data.dong_name, 
                 street_num_main : data.street_num_main, 
                 street_num_sub : data.street_num_sub, 
-                detail : data.detail 
-
+                detail : data.detail
             });
             return true
         }

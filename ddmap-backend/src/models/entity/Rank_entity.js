@@ -1,19 +1,19 @@
 
-module.exports = (sequelize, dataTypes) => (
+module.exports = (sequelize, DataTypes) => (
 
     sequelize.define('rank', {
         id: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false
         },
         review_number: {
-            type: dataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: true
         },
         review_avg_star: {
-            type: dataTypes.DOUBLE,
+            type: DataTypes.DOUBLE,
             allowNull: false
         }
     }, {
