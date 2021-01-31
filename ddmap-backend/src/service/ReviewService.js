@@ -2,7 +2,7 @@ const ReviewModel = require('../models/ReviewModel')
 
 class ReviewService {
 
-    constructor(){
+    constructor() {
         this.ReviewModel = new ReviewModel();
     }
 
@@ -30,14 +30,14 @@ class ReviewService {
         }
     }
 
-    async findOneReviewByToiletId(toiletId) {
+    async findReviewsByToiletId(toiletId) {
         try {
             console.log("----service: review find by toilet id");
-            const result = await this.ReviewModel.findOneReviewByToiletId(toiletId);
+            const result = await this.ReviewModel.findReviewsByToiletId(toiletId);
             return result;
 
         } catch (error) {
-            console.log("Service findOneReviewByToiletId: " + error);
+            console.log("Service findReviewsByToiletId: " + error);
             throw new Error(error);
         }
     }

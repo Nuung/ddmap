@@ -11,7 +11,7 @@ module.exports = (app) => {
     const { 
         registerNewReview, 
         findOneReviewById, 
-        findOneReviewByToiletId, 
+        findReviewsByToiletId, 
         findReviewsByUserId 
     } = require('../controllers/reviewController');
 
@@ -20,8 +20,12 @@ module.exports = (app) => {
     app.route('/review').post(validateReviewCreate, registerNewReview);
 
     // find all reviews by userId
-    app.use('/reviews', verifyToken);
-    app.route('/reviews/:id').get(findReviewsByUserId);
+    app.use('/user/reviews', verifyToken);
+    app.route('/user/reviews/:id').get(findReviewsByUserId);
+
+    // find all reviews by toiletId
+    app.use('/toilet/reviews', verifyToken);
+    app.route('/toilet/reviews/:id').get(findReviewsByToiletId);    
 };
 
 

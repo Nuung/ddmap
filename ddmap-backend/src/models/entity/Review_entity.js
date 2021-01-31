@@ -1,13 +1,13 @@
 
 module.exports = (sequelize, DataTypes) => (
 
-sequelize.define('reviews',{
+    sequelize.define('reviews', {
         id: {
             type: DataTypes.STRING(40),
-            allowNUll: false, 
+            allowNUll: false,
             primaryKey: true
         },
-        toiletId:{
+        toiletId: {
             type: DataTypes.STRING(40),
             allowNull: false
             // unique: true 
@@ -21,39 +21,39 @@ sequelize.define('reviews',{
             allowNull: true
         },
         latitude: {
-            type: DataTypes.DOUBLE, 
+            type: DataTypes.DOUBLE,
             allowNull: false
         },
         longitude: {
-            type: DataTypes.DOUBLE, 
-            allowNull: false 
+            type: DataTypes.DOUBLE,
+            allowNull: false
         },
         image: {
-            type: DataTypes.STRING(300), 
+            type: DataTypes.STRING(300),
             allowNull: true
         },
-        clean_of_toilet : {
-            type: DataTypes.INTEGER, 
+        clean_of_toilet: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         amount_of_tissue: {
-            type: DataTypes.INTEGER, 
-            allowNull: false 
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
-        is_old : {
-            type: DataTypes.TINYINT, 
+        is_old: {
+            type: DataTypes.TINYINT,
             allowNull: false
         },
         is_secret: {
-            type: DataTypes.TINYINT, 
-            allowNull: false 
-        }, 
-        shot_detail : {
-            type: DataTypes.STRING(200), 
+            type: DataTypes.TINYINT,
+            allowNull: false
+        },
+        shot_detail: {
+            type: DataTypes.STRING(200),
             allowNull: true
         }
-    },{
-        charset:'utf8',
-        collate:'utf8_general_ci'
+    }, {
+        charset: 'utf8',
+        collate: 'utf8_general_ci'
     })
 );

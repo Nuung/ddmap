@@ -41,7 +41,7 @@ class ReviewModel {
         }
     }
 
-    async findOneReviewByToiletId(toiletId) {
+    async findReviewsByToiletId(toiletId) {
         try {
             console.log(`----model: review find by toilet id: ${toiletId}`);
             const review = await Review.findAll({
@@ -53,7 +53,7 @@ class ReviewModel {
             return review;
         } 
         catch (error) {
-            throw new Error("Model findOneReviewBytoiletId: " + error);
+            throw new Error("Model findReviewsByToiletId: " + error);
         }
     }
 

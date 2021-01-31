@@ -59,11 +59,11 @@ const findOneReviewById = async (req, res) => {
 };
 
 
-const findOneReviewByToiletId = async (req, res) => {
+const findReviewsByToiletId = async (req, res) => {
     try {
         const reviewService = new ReviewService();
         console.log(`----controller: review find by toilet id: ${req.params.id}`);
-        const result = await reviewService.findOneReviewByToiletId(req.params.id);
+        const result = await reviewService.findReviewsByToiletId(req.params.id);
         if (result) {
             console.log({ result });
             res.status(201).json({ result });
@@ -110,4 +110,4 @@ const findReviewsByUserId = async (req, res) => {
     }
 };
 
-module.exports = { registerNewReview, findOneReviewById, findOneReviewByToiletId, findReviewsByUserId };
+module.exports = { registerNewReview, findOneReviewById, findReviewsByToiletId, findReviewsByUserId };

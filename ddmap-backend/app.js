@@ -11,7 +11,7 @@ const escapeJSON = require('escape-json-node');
 const userRouter = require('./src/routes/userRouter');
 const toiletRouter = require('./src/routes/toiletRouter');
 const reviewRouter = require('./src/routes/reviewRouter');
-
+const bookmarkRouter = require('./src/routes/bookmarkRouter');
 
 
 //−−−−−−−−−−−−−−−−− ORM - sequelize Setting −−−−−−−−−−−−−−−−−//
@@ -49,6 +49,7 @@ app.set('jwt-secret', process.env.JWT_SECRET); // set the secret key variable fo
 userRouter(app); 
 toiletRouter(app);
 reviewRouter(app);
+bookmarkRouter(app);
 
 // image 사용 할 수 있게 만들어주는 static 
 app.use('/img', express.static('uploads'));
