@@ -5,107 +5,80 @@ const ToiletService = require('../service/ToiletService');
 const { Toilet } = require('../models');
 
 
-const registerNewToilet =  async (req, res) =>{
+const registerNewToilet = async (req, res) => {
 
     const image = null;
 
-    console.log("image Name " + image);
-    const {
-        id,
-        name,
-        latitude, 
-        longitude, 
-        goo_name,
-        dong_name,
-        street_num_main,
-        street_num_sub,
-        detail,
-    } = req.body
+    try {
+        const toiletService = new ToiletService();
+        const check = await toiletService.registerToiletData(req.body);
 
-
-    const toilet = {id, name, latitude, longitude, goo_name, dong_name,
-    street_num_main, street_num_sub, detail, image};
-
-    try{
-        const toiletService = new ToiletService(); 
-        const check =  await toiletService.registerToiletData(toilet);
-        
-        if(check){
+        if (check) {
             const data = {
                 message: '화장실 등록에 성공했습니다'
             };
             console.log(data);
-            res.status(201).json({data});
+            return res.status(201).json({ data });
         }
-        else{
+        else {
             const data = {
-                 message: '화장실 등록에 실패했습니다.'
+                message: '화장실 등록에 실패했습니다.'
             };
-    
             console.log(data);
-            res.status(401).json({data});
+            return res.status(401).json({ data });
         }
-
     }
-    catch(error){
+    catch (error) {
         console.log(error);
         const errorMessage = "등록에 실패하였습니다."
-        return res.status(401).json({errorMessage})
+        return res.status(401).json({ errorMessage })
     }
 
 }
 
+const getNearToilets = async (req, res) => {
 
-const getNearToilets = async ( req, res ) => {
+    const lat = req.query.lat;
+    const lon = req.query.lon;
 
-    const lat = req.query.lat; 
-    const lon = req.query.lon; 
-
-    try{
+    try {
         const toiletService = new ToiletService()
-        
-        const toiletData = await toiletService.getNearToilets(lat, lon)
-        
+
+        const toiletData = await toiletService.getNearToilets(lat, lon);
+
         const data = {
-             toiletData
+            toiletData
         }
 
-        res.status(201).json({data});
+        res.status(201).json({ data });
 
-    }catch(error){
+    } catch (error) {
         const data = {
-            message : '일시적인 서버 오류입니다.'
+            message: '일시적인 서버 오류입니다.'
         }
 
-        res.status(401).json({data});
+        res.status(401).json({ data });
     }
 
 
 }
 
+const getToiletInfobyId = async (req, res) => {
 
-const getToiletInfobyId = async (req, res) =>{
+    const toilet_id = req.query.toilet_id;
+    const user_id = req.query.user_id;
 
-    const id = req.params.id
-
-    try{
+    try {
         const toiletService = new ToiletService()
-        
-        const toiletData = await toiletService.getToiletInfobyId(id)
-        
+        const toiletData = await toiletService.getToiletInfobyId(toilet_id, user_id);
+        const data = { toiletData }
+        res.status(201).json({ data });
+    } catch (error) {
         const data = {
-             toiletData
+            message: '일시적인 서버 오류입니다.'
         }
-
-        res.status(201).json({data});
-
-    }catch(error){
-        const data = {
-            message : '일시적인 서버 오류입니다.'
-        }
-
-        res.status(401).json({data});
+        res.status(401).json({ data });
     }
-} 
+}
 
-module.exports = {registerNewToilet, getNearToilets, getToiletInfobyId}
+module.exports = { registerNewToilet, getNearToilets, getToiletInfobyId }

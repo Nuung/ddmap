@@ -22,6 +22,7 @@ const validateReviewCreate = [
         .not()
         .isEmpty()
         .withMessage('clean_of_toilet can not be empty!')
+        .bail()
         .isNumeric()
         .withMessage('clean_of_toilet must be number!')
         .bail(),

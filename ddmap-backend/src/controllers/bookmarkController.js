@@ -82,4 +82,40 @@ const findBookmarksByUserId = async (req, res) => {
     }
 };
 
-module.exports = { registerNewBookmark, findBookmarksByToiletId, findBookmarksByUserId };
+
+const deleteBookmark = async (req, res) => {
+    const logs = "----controller: bookmark delete by user and toilet id"; // log flags
+    try {
+        const bookmarkService = new BookmarkService();
+        console.log(`${logs}: ${req.body.user_id, req.body.toilet_id}`);
+        const result = await bookmarkService.deleteBookmark(req.body);
+        if (result) {
+            console.log({ result });
+            res.status(201).json({ result });
+        }
+        else {
+            if (!req.body.user_id || !req.body.toilet_id) {
+                const data = {
+                    message: '북마크 삭제에 실패했습니다. 올바른 데이터 값을 넣어주세요!'
+                };
+                console.log(data);
+                res.status(404).json({ data });
+            }
+            else {
+                const data = {
+                    message: '북마크 삭제에 실패했습니다.'
+                };
+                console.log(data);
+                res.status(401).json({ data });
+            }
+        }
+
+    }
+    catch (error) {
+        console.log(error);
+        const errorMessage = "북마크 삭제에 실패하였습니다."
+        return res.status(401).json({ errorMessage });
+    }
+};
+
+module.exports = { registerNewBookmark, findBookmarksByToiletId, findBookmarksByUserId, deleteBookmark };

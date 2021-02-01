@@ -40,11 +40,16 @@ if __name__ == "__main__":
         {'id': '제공기관코드'}, {'id': '제공기관명'}]
         '''
 
+        counter = 0
         for record in records:
             try:
                 address = record['소재지도로명주소'].split(" ")
-                if record['위도'] or record['경도']:
-                    print(record['화장실명'], record['위도'], record['경도'], " ".join(address[:2]), address[2], address[3], "".join(address[4:]), record['데이터기준일자'], nowDate)
+                if (record['위도'] or record['경도']) and (address[0] in ["서울", "서울 특별시", "서울특별시", "경기도", "경기"]):
+                    counter += 1
+                    print(record['화장실명'], record['위도'], record['경도'], record['개방시간'], record['남녀공용화장실여부'], " ".join(address[:2]), address[2], address[3], "".join(address[4:]), record['데이터기준일자'], nowDate)
+                # else:
             except Exception:
                 continue
+
+        print(counter)
             

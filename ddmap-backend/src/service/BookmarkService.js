@@ -41,6 +41,18 @@ class BookmarkService {
             throw new Error(error);
         }
     }
+
+    async deleteBookmark(data) {
+        const logs = "----service: Bookmark delete by user and toilet id";
+        try {
+            console.log(`${logs}: ${data}`);
+            const result = await this.BookmarkModel.deleteBookmark(data);
+            return result;
+        } catch (error) {
+            console.log(`${logs}: ${error}`);
+            throw new Error(error);
+        }
+    }
 }
 
 module.exports = BookmarkService;

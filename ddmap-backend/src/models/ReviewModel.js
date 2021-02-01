@@ -8,6 +8,7 @@ class ReviewModel {
                 id: data.id,
                 toiletId: data.toiletId,
                 userId: data.userId,
+                sex: data.sex,
                 title: data.title,
                 latitude: data.latitude,
                 longitude: data.longitude,
@@ -31,11 +32,10 @@ class ReviewModel {
             const review = await Review.findAll({
                 where: {
                     id
-                },
-                raw: true
+                }
             });
             return review;
-        } 
+        }
         catch (error) {
             throw new Error("Model findOneReviewById: " + error);
         }
@@ -47,11 +47,10 @@ class ReviewModel {
             const review = await Review.findAll({
                 where: {
                     toiletId
-                },
-                raw: true
+                }
             });
             return review;
-        } 
+        }
         catch (error) {
             throw new Error("Model findReviewsByToiletId: " + error);
         }
@@ -63,11 +62,10 @@ class ReviewModel {
             const review = await Review.findAll({
                 where: {
                     userId
-                },
-                raw: true
+                }
             });
             return review;
-        } 
+        }
         catch (error) {
             throw new Error("Model findOneReviewByuserId: " + error);
         }

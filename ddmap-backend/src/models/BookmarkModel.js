@@ -25,7 +25,7 @@ class BookmarkModel {
                 raw: true
             });
             return bookmark;
-        } 
+        }
         catch (error) {
             throw new Error("Model findBookmarksByToiletId: " + error);
         }
@@ -41,9 +41,26 @@ class BookmarkModel {
                 raw: true
             });
             return bookmark;
-        } 
+        }
         catch (error) {
             throw new Error("Model findBookmarksByuserId: " + error);
+        }
+    }
+
+    async deleteBookmark(data) {
+        const logs = "(`----model: bookmark delete by user and toilet id";
+        try {
+            console.log(`${logs}: ${data}`);
+            const result = await Bookmark.destroy({
+                where: {
+                    userId: data.user_id,
+                    toiletId: data.toilet_id
+                }
+            });
+            return result;
+        }
+        catch (error) {
+            throw new Error(`${logs}: ${error}`);
         }
     }
 }

@@ -27,11 +27,13 @@ db.Bookmark = require('./entity/Bookmark_entity')(sequelize, Sequelize);
 
 // 관계 설정 
 db.Toilet.hasMany(db.Review);
+db.Toilet.hasMany(db.Bookmark);
 db.User.hasMany(db.Review);
 db.User.hasMany(db.Bookmark);
 db.Review.belongsTo(db.Toilet);
 db.Review.belongsTo(db.User);
 db.Bookmark.belongsTo(db.User);
+db.Bookmark.belongsTo(db.Toilet);
 
 module.exports = db;
 
