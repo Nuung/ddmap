@@ -9,7 +9,8 @@ module.exports = (app) => {
     const { 
         registerNewBookmark, 
         findBookmarksByToiletId, 
-        findBookmarksByUserId 
+        findBookmarksByUserId,
+        deleteBookmark
     } = require('../controllers/bookmarkController');
 
     // create reivew
@@ -18,11 +19,12 @@ module.exports = (app) => {
 
     // find all bookmarks by userId
     app.use('/user/bookmarks', verifyToken);
+    app.route('/user/bookmarks').delete(deleteBookmark);
     app.route('/user/bookmarks/:id').get(findBookmarksByUserId);
 
     // find all bookmarks by toiletId
     app.use('/toilet/bookmarks', verifyToken);
-    app.route('/toilet/bookmarks/:id').get(findBookmarksByToiletId);    
+    app.route('/toilet/bookmarks/:id').get(findBookmarksByToiletId);
 };
 
 

@@ -1,53 +1,40 @@
 const ToiletModel = require('../models/ToiletModel')
 
-class ToiletService{
+class ToiletService {
 
-    constructor(){
+    constructor() {
         this.ToiletModel = new ToiletModel();
     }
 
-    async registerToiletData(data){
-        
-        console.dir(data);
+    async registerToiletData(data) {
+        try {
+            const result = await this.ToiletModel.registerNewToilet(data); // return boolean
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error(error);
+        }
+    }
 
-        try{
-            const toilet = await this.ToiletModel.registerNewToilet(data);
-    
+    async getNearToilets(lat, lon) {
+        try {
+            const toilet = await this.ToiletModel.getNearToiletData(lat, lon);
             return toilet;
-            
-        } catch(error){
+        } catch (error) {
             console.log(error);
             throw new Error(error);
         }
     }
 
-    async getNearToilets(lat, lon){
-        
-        try{
-            const toilet = await this.ToiletModel.getNearToiletData(lat , lon); 
-
-            return toilet 
-
-        }catch(error){
+    async getToiletInfobyId(toiletId, userId) {
+        try {
+            const toilet = await this.ToiletModel.findOneToiletWithBookmark(toiletId, userId);
+            return toilet;
+        } catch (error) {
             console.log(error);
             throw new Error(error);
         }
     }
-
-    async getToiletInfobyId(toiletId){
-
-        try{
-            const toilet = await this.ToiletModel.findOneToilet(toiletId);
-
-            return toilet
-        }catch(error){
-            console.log(error);
-            throw new Error(error);
-        }
-    }
-
-
-
 }
 
 module.exports = ToiletService 
