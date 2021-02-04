@@ -97,7 +97,7 @@ ddmap-frontend/public/images/*
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/sftp.json
+# !.vscode/sftp.json
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
