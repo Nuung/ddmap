@@ -1,5 +1,5 @@
 'use strict'
-const BookmarkService = require('../service/bookmarkService');
+const BookmarkService = require('../service/BookmarkService');
 
 const registerNewBookmark = async (req, res) => {
 

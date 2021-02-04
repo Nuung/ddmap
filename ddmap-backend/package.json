@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
-    "celize": "^6.3.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
