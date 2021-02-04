@@ -1,26 +1,19 @@
-import datetime # for get now time
+import requests  # for Toilet Api
+import datetime  # for get now time
+import random
 import pytz
 import json
+from time import sleep
 from pprint import pprint
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
+    # config
     now = datetime.datetime.now(tz=pytz.utc)
     nowDate = now.strftime('%Y-%m-%d')
-
-    toilet_model = {
-        "id": "",
-        "name": "",
-        "latitude": "",
-        "longitude": "",
-        "image": "",
-        "goo_name": "",
-        "dong_name": "",
-        "street_num_main": "",
-        "street_num_sub": "",
-        "detail": "",
-        "createdAt": "",
-        "updatedAt": ""
+    headers = {
+        'Content-Type': "application/json",
+        'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MTIzIiwiaWF0IjoxNjEyMTEyNDg1LCJleHAiOjE2NDM2NDg0ODUsImlzcyI6ImRkbWFwIn0.Uqdid9le8NvcOzDCEPWvl5eotr4pd9RZuvISHskb-R4"
     }
 
     with open('./datas/전국공중화장실표준데이터.json') as json_file:
@@ -41,15 +34,35 @@ if __name__ == "__main__":
         '''
 
         counter = 0
+        req_arr = []
         for record in records:
             try:
-                address = record['소재지도로명주소'].split(" ")
-                if (record['위도'] or record['경도']) and (address[0] in ["서울", "서울 특별시", "서울특별시", "경기도", "경기"]):
+                address_new = record['소재지도로명주소'].split(" ")
+                address_old = record['소재지지번주소'].split(" ")
+                if (record['위도'] or record['경도']) and (address_new[0] in ["서울", "서울 특별시", "서울특별시", "경기도", "경기"]):
+                    body = {
+                        "id": f"admin{random.uniform(100000000, 200000000)}",
+                        "name": record['화장실명'],
+                        "open_time": record['개방시간'],
+                        "sex": (0 if record['남녀공용화장실여부'] == 'N' else 2),
+                        "latitude": record['위도'],
+                        "longitude": record['경도'],
+                        "image": "",
+                        "city_name": address_new[0],
+                        "goo_name": address_new[1],
+                        "dong_name": address_old[2],
+                        "street_name": address_new[2],
+                        "street_num_main": address_new[3],
+                        "street_num_sub": " ".join(address_old[3:]),
+                        "detail": f"전국공중화장실표준데이터{record['데이터기준일자']}",
+                    }
+
+                    requests.request("POST", "http://49.247.0.135:443/toilet", data=json.dumps(body), headers=headers)
+                    sleep(0.1)
+                    req_arr.append(body)
                     counter += 1
-                    print(record['화장실명'], record['위도'], record['경도'], record['개방시간'], record['남녀공용화장실여부'], " ".join(address[:2]), address[2], address[3], "".join(address[4:]), record['데이터기준일자'], nowDate)
-                # else:
-            except Exception:
+            except Exception as e:
                 continue
 
+        # print(req_arr)
         print(counter)
-            

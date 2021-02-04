@@ -40,7 +40,7 @@ const getNearToilets = async (req, res) => {
 
     const lat = req.query.lat;
     const lon = req.query.lon;
-
+    
     try {
         const toiletService = new ToiletService()
 
