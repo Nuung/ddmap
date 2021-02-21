@@ -40,7 +40,7 @@ const getNearToilets = async (req, res) => {
 
     const lat = req.query.lat;
     const lon = req.query.lon;
-    
+
     try {
         const toiletService = new ToiletService()
 
@@ -59,9 +59,7 @@ const getNearToilets = async (req, res) => {
 
         res.status(401).json({ data });
     }
-
-
-}
+};
 
 const getToiletInfobyId = async (req, res) => {
 

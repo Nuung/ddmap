@@ -70,12 +70,12 @@ class ToiletModel {
             // --> and 조건, lat+ 거리 보다 작고 ,lon + 거리보다 작고 
             where: {
                 longitude: {
-                    [Op.lte]: parseFloat(lon) + 1,
-                    [Op.gte]: lon - 1
+                    [Op.lte]: parseFloat(lon) + 0.01,
+                    [Op.gte]: lon - 0.01
                 },
                 latitude: {
-                    [Op.lte]: parseFloat(lat) + 1,
-                    [Op.gte]: lat - 1
+                    [Op.lte]: parseFloat(lat) + 0.01,
+                    [Op.gte]: lat - 0.01
                 }
 
             }

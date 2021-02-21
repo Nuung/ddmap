@@ -1,12 +1,10 @@
-'user strict';
+'use strict';
 const User = require('.').User
 
 class UserModel {
 
     //유저 생성 
-    
     async saveUserByLocalId(data){
-
         await User.create({     
             id: data.id, 
             profile_icon: data.profile_icon, 
@@ -14,7 +12,7 @@ class UserModel {
             gender: data.gender, 
             password: data.password,
             salt: data.salt
-        })
+        });
     } 
     
     //유저 id 중복 확인 

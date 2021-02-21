@@ -3,10 +3,8 @@
 const UserService = require('../service/UserService')
 
 
-const localSignup = async (req, res) => {
+const signUp = async (req, res) => {
     const userService = new UserService();
-    console.log("UserPostTest")
-
     const {
         body: {
             id,
@@ -14,29 +12,28 @@ const localSignup = async (req, res) => {
             nic_name,
             gender,
             password,
+            is_oauth
         }
-    } = req
+    } = req;
 
     try {
         const exUserId = await userService.findUserByLocalId(id)
 
         if (exUserId) {
             const errorMessage = '이미 가입 된 사용자 입니다.'
-            return res.status(400).json({ errorMessage })
+            return res.status(401).json({ errorMessage })
         } else {
             const encryptPasswd = userService.encryptPasswd(password)
-            var iconValue = '';
 
+            let iconValue = '';
             if (profile_icon == 1) {
-                iconValue = 'character1.jpg'
-
+                iconValue = 'character1.jpg';
             } else if (profile_icon == 2) {
-                iconValue = 'character2.jpg'
+                iconValue = 'character2.jpg';
             }
 
             // profile_icon의 경우 번호를 입력받아서 기존 데이터베이스에 저장 된 
             // 이미지 주소를 매칭시켜서 저장해주는게 나을듯 
-
             await userService.saveUserByLocalId({
                 id
                 , profile_icon: iconValue
@@ -44,23 +41,57 @@ const localSignup = async (req, res) => {
                 , nic_name
                 , gender
                 , password: encryptPasswd.encryptedPasswd
-            })
+            });
 
+
+            // oauth일 경우 OAuth Table에 추가 -> is_oauth
+            if (is_oauth === 1) {
+                await userService.saveUserToOAuth({
+                    id: id, userId: id, is_oauth
+                });
+            }
+            else {
+
+            }
 
             const data = {
                 message: '회원가입에 성공했습니다'
-            }
-            console.log(data)
-
-            res.status(201).json({ data })
-
+            };
+            return res.status(201).json({ data });
         }
     } catch (error) {
         console.log(error);
         throw new Error(error);
     }
+};
 
-}
+// id 중복 체크 API
+const signUpIdCheck = async (req, res) => {
+    const userService = new UserService();
+    const targetId = req.params.id;
+
+    // params check!
+    if (!targetId || targetId == null) {
+        const errorMessage = "request params 값 체크 부탁 드리겠습니다."
+        return res.status(401).json({ error: errorMessage });
+    }
+
+    try {
+        const exUserId = await userService.findUserByLocalId(targetId);
+        if (exUserId) {
+            const errorMessage = '이미 가입 된 사용자 입니다.'
+            return res.status(401).json({ errorMessage });
+        } else {
+            const data = {
+                message: '사용 가능한 아이디 입니다.'
+            };
+            return res.status(200).json({ data });
+        };
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({ error: error });
+    }
+};
 
 const localSignin = async (req, res) => {
 
@@ -68,19 +99,16 @@ const localSignin = async (req, res) => {
 
     //여기 로직 
     try {
-
         const {
             body: {
                 id,
                 password
             }
-        } = req
+        } = req;
 
-        const userpw = await userService.findUserByLocalPasswd(id)
-
+        const userpw = await userService.findUserByLocalPasswd(id);
         const checkPasswd = await userService.verifyPassword(userpw.salt, userpw.password, password)
-
-        const token = userService.makeToken(userpw.id)
+        const token = userService.makeToken(userpw.id);
 
         if (checkPasswd && id === userpw.id) {
             //login 성공 메시지 
@@ -88,93 +116,69 @@ const localSignin = async (req, res) => {
                 message: '로그인에 성공했습니다.',
                 token
             }
-
-            return res.status(201).json({ data })
+            return res.status(201).json({ data });
 
         } else {
-
             const data = {
                 message: '비밀번호 또는 아이디가 일치하지 않습니다.'
             }
-
-            return res.status(401).json({ data })
-
+            return res.status(401).json({ data });
         }
 
     } catch (error) {
         console.log(error);
         throw new Error(error);
     }
-
-}
+};
 
 // getUserData user의 정보를 가져오는게 필요 할듯 
 const getUserData = async (req, res) => {
 
-    const id = req.token.userId
-
+    const id = req.token.userId;
     const userService = new UserService();
-
-    const userData = await userService.getUserDataByLocalId(id)
+    const userData = await userService.getUserDataByLocalId(id);
 
     if (userData) {
-
         const data = {
             profile_icon: `http://localhost:3000/img/${userData.profile_icon}`,
             nic_name: userData.nic_name,
             gender: userData.gender,
         }
-
-        return res.status(201).json({ data })
+        return res.status(201).json({ data });
     } else {
-
         const data = {
             message: '일치하는 유저가 없습니다.'
         }
-
-        return res.status(401).json({ data })
-
+        return res.status(401).json({ data });
     }
-
-
-}
+};
 
 
 const kakaoSignin = async (req, res) => {
+    const accessToken = req.body.token;
 
-    var passport = require('passport');
-    var KakaoStrategy = require('passport-kakao').Strategy;
-    const env = require('dotenv').config();
+    try {
 
-    console.log("kakaoLogin")
+        res.status(201).json({ data });
 
-    passport.authenticate('login-kakao')
+    } catch (error) {
 
-    passport.use('login-kakao', new KakaoStrategy({
-        clientID: process.env.KAKAO_ID,
-        callbackURL: 'http://localhost:3000/oauth'
-    },
+        res.status(401).json({ data });
+    }
+};
 
-        function (accessToken, refreshToken, profile, done) {
-            console.log(profile);
-            return done(null, profile);
-        }
-
-    ))
-}
 
 const kakaoSigncallBack = async (req, res) => {
-
     passport.authenticate('login-kakao', {
         successRedirect: '/main',
         failureRedirect: '/'
-    })
-
-}
+    });
+};
 
 
 module.exports = {
-    localSignup,
+    signUp,
+    signUpIdCheck,
     localSignin,
     getUserData,
     kakaoSignin,

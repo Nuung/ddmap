@@ -9,14 +9,16 @@ const verifyToken = require('../middlewares/auth_new');
 
 module.exports = (app) => {
     const {
-        localSignup,
+        signUp,
         localSignin,
+        signUpIdCheck,
         getUserData,
         kakaoSignin,
         kakaoSigncallBack
     } = require('../controllers/userController');
 
-    app.route('/local/signup').post(localSignup);
+    app.route('/local/signup').post(signUp);
+    app.route('/local/signup/:id').get(signUpIdCheck);
     app.route('/local/signin').post(localSignin);
 
     // app.use('/local/user/info', verifyToken);
@@ -24,7 +26,7 @@ module.exports = (app) => {
     app.route('/local/user').get(getUserData);
     
     app.route('/local/upload/image').post(uploadToiletImg);
-    app.route('/local/login/oauth').post(kakaoSignin);
+    app.route('/oauth/kakao/signin').post(kakaoSignin);
     app.route('/oauth/kakao/callback').get(kakaoSigncallBack);
 };
 
