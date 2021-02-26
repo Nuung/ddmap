@@ -15,9 +15,7 @@ class OAuthModel {
     //유저 id 중복 확인 
     async findOAuthById(id) {
         const user = await OAuth.findOne({
-            where: {
-                id
-            }
+            where: { id }
         });
         return user;
     }
@@ -28,9 +26,7 @@ class OAuthModel {
                 'userId',
                 'is_oauth'
             ],
-            where: {
-                id
-            }
+            where: { id }
         })
         return user;
     }

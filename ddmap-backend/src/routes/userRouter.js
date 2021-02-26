@@ -25,9 +25,9 @@ module.exports = (app) => {
     app.use('/local/user', verifyToken);
     app.route('/local/user').get(getUserData);
     
-    app.route('/local/upload/image').post(uploadToiletImg);
     app.route('/oauth/kakao/signin').post(kakaoSignin);
     app.route('/oauth/kakao/callback').get(kakaoSigncallBack);
+    app.route('/local/upload/image').post(uploadToiletImg);
 };
 
 

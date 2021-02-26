@@ -40,8 +40,8 @@ class UserService {
             }
             return encryptInfo
         } catch (error) {
-            console.log(error)
-            return new Error(error)
+            console.log(error);
+            return new Error(error);
         }
     }
 
@@ -91,18 +91,28 @@ class UserService {
             console.log(error)
             throw new Error(error)
         }
-    }    
+    }
+
+    // Kakao OAuth Login -> OAuth -> Kakao에서 return해주는 고유 id값만 체크하고 그걸로 로그인만 하면 됨
+    async findUserOAuthlId(id) {
+        try {
+            const user = await this.OAuthmodel.findOAuthById(id);
+            const userId = user ? user.id : null;
+            return userId;
+        } catch (error) {
+            console.log(error);
+            throw new Error(error);
+        }
+    }
 
     async findUserByLocalPasswd(id) {
         try {
-
-            const user = await this.Usermodel.findUserByLocalPassword(id)
-
-            return user
-
+            const user = await this.Usermodel.findUserByLocalPassword(id);
+            if (user) return user;
+            else return null;
         } catch (error) {
-            console.log(error)
-            throw new Error(error)
+            console.log(error);
+            throw new Error(error);
         }
     }
 

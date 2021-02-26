@@ -106,8 +106,14 @@ const localSignin = async (req, res) => {
             }
         } = req;
 
-        const userpw = await userService.findUserByLocalPasswd(id);
-        const checkPasswd = await userService.verifyPassword(userpw.salt, userpw.password, password)
+        // request first, Find user by id 
+        const userpw = await userService.findUserByLocalPasswd(id); 
+        if (!userpw) {
+            const data = { message: '존재하지 않는 아이디 입니다.' }
+            return res.status(401).json({ data });
+        }
+
+        const checkPasswd = userService.verifyPassword(userpw.salt, userpw.password, password)
         const token = userService.makeToken(userpw.id);
 
         if (checkPasswd && id === userpw.id) {
@@ -155,15 +161,41 @@ const getUserData = async (req, res) => {
 
 
 const kakaoSignin = async (req, res) => {
-    const accessToken = req.body.token;
-
+    
+    const userService = new UserService();
+    const kakaoId = req.body.id; // body value
+    
     try {
+        if (!kakaoId) {
+            const data = { message: '올바른 카카오 계정을 선택 또는 로그인 해주세요!' }
+            return res.status(401).json({ data });
+        }
 
-        res.status(201).json({ data });
+        // request first, Find user by OAuth Kakao id 
+        const targetUser = await userService.findUserOAuthlId(kakaoId); 
+        if (!targetUser) {
+            const data = { message: '존재하지 않는 아이디 입니다. 회원가입 부터 해주세요!' }
+            return res.status(401).json({ data });
+        }
 
+        const token = userService.makeToken(targetUser);
+        if (kakaoId === targetUser) {
+            //login 성공 메시지 
+            const data = {
+                message: '로그인에 성공했습니다.',
+                token
+            }
+            return res.status(201).json({ data });
+
+        } else {
+            const data = {
+                message: '비밀번호 또는 아이디가 일치하지 않습니다.'
+            }
+            return res.status(401).json({ data });
+        }
     } catch (error) {
-
-        res.status(401).json({ data });
+        console.log(error);
+        throw new Error(error);
     }
 };
 
