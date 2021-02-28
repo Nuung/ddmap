@@ -1,4 +1,5 @@
 const Review = require('.').Review;
+const Rating = require('.').Rating;
 
 class ReviewModel {
 
@@ -41,13 +42,20 @@ class ReviewModel {
         }
     }
 
+    // find by review with toiletId -> And Need Rating by reviewId (to Rating Table)
+    // SELECT * from reviews as review JOIN ratings as rating ON rating.reviewId = review.id WHERE review.toiletId = "admin198781306.64245895";
     async findReviewsByToiletId(toiletId) {
         try {
             console.log(`----model: review find by toilet id: ${toiletId}`);
             const review = await Review.findAll({
-                where: {
-                    toiletId
-                }
+                where: { toiletId },
+                include: [
+                    {
+                        model: Rating,
+                        attributes: ['rate'],
+                        required: false
+                    }
+                ]
             });
             return review;
         }
@@ -60,9 +68,14 @@ class ReviewModel {
         try {
             console.log(`----model: review find by user id: ${userId}`);
             const review = await Review.findAll({
-                where: {
-                    userId
-                }
+                where: { userId },
+                include: [
+                    {
+                        model: Rating,
+                        attributes: ['rate'],
+                        required: false
+                    }
+                ]
             });
             return review;
         }

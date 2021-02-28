@@ -4,7 +4,6 @@ import random
 import pytz
 import json
 from time import sleep
-from pprint import pprint
 
 
 if __name__ == "__main__":
@@ -16,7 +15,7 @@ if __name__ == "__main__":
         'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ0ZXN0MTIzIiwiaWF0IjoxNjEyMTEyNDg1LCJleHAiOjE2NDM2NDg0ODUsImlzcyI6ImRkbWFwIn0.Uqdid9le8NvcOzDCEPWvl5eotr4pd9RZuvISHskb-R4"
     }
 
-    with open('./datas/전국공중화장실표준데이터.json') as json_file:
+    with open('./datas/public_toilet_standard_data.json') as json_file:
         json_data = json.load(json_file)
         columns = json_data['fields']
         records = json_data['records']
@@ -61,8 +60,7 @@ if __name__ == "__main__":
                     sleep(0.1)
                     req_arr.append(body)
                     counter += 1
-            except Exception as e:
-                continue
+            except Exception as e: continue
 
         # print(req_arr)
         print(counter)

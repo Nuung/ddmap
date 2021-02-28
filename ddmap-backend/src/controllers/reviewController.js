@@ -73,7 +73,7 @@ const findReviewsByToiletId = async (req, res) => {
         }
         else {
             const data = {
-                message: '리뷰 등록에 실패했습니다.'
+                message: '해당 화장실에 대한 리뷰 찾기를 실패했습니다.'
             };
             console.log(data);
             res.status(401).json({ data });
@@ -82,7 +82,7 @@ const findReviewsByToiletId = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        const errorMessage = "리뷰 등록에 실패하였습니다."
+        const errorMessage = "해당 화장실에 대한 리뷰 찾기를 실패하였습니다."
         return res.status(401).json({ errorMessage });
     }
 };
@@ -99,7 +99,7 @@ const findReviewsByUserId = async (req, res) => {
         }
         else {
             const data = {
-                message: '리뷰 등록에 실패했습니다.'
+                message: '해당 유저에 대한 리뷰 찾기를 실패했습니다.'
             };
             console.log(data);
             res.status(401).json({ data });
@@ -108,7 +108,7 @@ const findReviewsByUserId = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        const errorMessage = "리뷰 등록에 실패하였습니다."
+        const errorMessage = "해당 유저에 대한 리뷰 찾기를 실패하였습니다."
         return res.status(401).json({ errorMessage });
     }
 };

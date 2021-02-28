@@ -23,7 +23,7 @@ module.exports = (app) => {
     // router.post('/local/upload/image', uploadToiletImg);
 
     app.use('/toilets', verifyToken);
-    app.route('/toilets').get(getNearToilets);
+    app.route('/toilets').get(getNearToilets); // 핵심 API
     
 };
 

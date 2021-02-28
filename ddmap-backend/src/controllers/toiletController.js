@@ -40,24 +40,21 @@ const getNearToilets = async (req, res) => {
 
     const lat = req.query.lat;
     const lon = req.query.lon;
+    if (!lat || !lon) { // lat, lon (GPS value) check
+        const data = { message: '현재 위치 정보에 오류가 있습니다. GPS를 확인해 주세요.' }
+        return res.status(404).json({ data });
+    }
 
     try {
         const toiletService = new ToiletService()
-
         const toiletData = await toiletService.getNearToilets(lat, lon);
-
-        const data = {
-            toiletData
-        }
-
-        res.status(201).json({ data });
-
+        const data = { toiletData }
+        return res.status(201).json({ data });
     } catch (error) {
         const data = {
             message: '일시적인 서버 오류입니다.'
         }
-
-        res.status(401).json({ data });
+        return res.status(401).json({ data });
     }
 };
 

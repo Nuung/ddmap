@@ -33,12 +33,12 @@ db.Toilet.hasMany(db.Bookmark);
 db.Toilet.hasMany(db.Rating);
 db.User.hasMany(db.Review);
 db.User.hasMany(db.Bookmark);
-db.User.hasMany(db.Rating);
 db.OAuth.belongsTo(db.User);
+db.Review.hasMany(db.Rating);
 db.Review.belongsTo(db.Toilet);
 db.Review.belongsTo(db.User);
 db.Rating.belongsTo(db.Toilet);
-db.Rating.belongsTo(db.User);
+db.Rating.belongsTo(db.Review);
 db.Bookmark.belongsTo(db.User);
 db.Bookmark.belongsTo(db.Toilet);
 
