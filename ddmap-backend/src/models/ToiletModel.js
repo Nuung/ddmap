@@ -61,31 +61,35 @@ class ToiletModel {
         const lonRange = parseFloat(lon);
         // LEFT OUTER JOIN + Group by with rate_avg!! 시퀄 쿼리 몰라서 raw로 날림 ㅎ
         const rawQuery = "SELECT `toilet`.`id`, `toilet`.`name`, `toilet`.`open_time`, `toilet`.`sex`, `toilet`.`latitude`, `toilet`.`longitude`, `toilet`.`image`, `toilet`.`city_name`, `toilet`.`goo_name`, `toilet`.`dong_name`, `toilet`.`street_name`, `toilet`.`street_num_main`, `toilet`.`street_num_sub`, `toilet`.`detail`, `toilet`.`createdAt`, `toilet`.`updatedAt`, AVG(ratings.rate) as rate_avg FROM `toilets` AS `toilet` LEFT OUTER JOIN `ratings` AS `ratings` ON `toilet`.`id` = `ratings`.`toiletId` WHERE (`toilet`.`longitude` <= ? AND `toilet`.`longitude` >= ?) AND (`toilet`.`latitude` <= ? AND `toilet`.`latitude` >= ?) GROUP BY toilet.id;";
-
-        const toilet = await db.sequelize.query(rawQuery, { replacements: [lonRange + 0.01, lonRange - 0.01, latRange + 0.01, latRange - 0.01], type: db.sequelize.QueryTypes.SELECT, raw: true });
-        // const toilet = await Toilet.findAll({
-        //     // attributes: [[Sequelize.fn('avg', Sequelize.col('rate')), 'rate_avg']],
-        //     where: { // --> and 조건, lat+ 거리 보다 작고 ,lon + 거리보다 작고 
-        //         longitude: {
-        //             [Op.lte]: parseFloat(lon) + 0.01,
-        //             [Op.gte]: lon - 0.01
-        //         },
-        //         latitude: {
-        //             [Op.lte]: parseFloat(lat) + 0.01,
-        //             [Op.gte]: lat - 0.01
-        //         }
-        //     },
-        //     include: [
-        //         {
-        //             model: Rating,
-        //             attributes: [[Sequelize.fn('AVG', Sequelize.col('ratings.rate')), 'rate_avg']],
-        //             // separate : true,
-        //             required: true
-        //         }
-        //     ],
-        //     group: [ 'toilet.id' ]
-        // });
-        return toilet;
+        try {
+            const toilet = await db.sequelize.query(rawQuery, { replacements: [lonRange + 0.01, lonRange - 0.01, latRange + 0.01, latRange - 0.01], type: db.sequelize.QueryTypes.SELECT, raw: true });
+            /*
+            const toilet = await Toilet.findAll({
+                // attributes: [[Sequelize.fn('avg', Sequelize.col('rate')), 'rate_avg']],
+                where: { // --> and 조건, lat+ 거리 보다 작고 ,lon + 거리보다 작고 
+                    longitude: {
+                        [Op.lte]: parseFloat(lon) + 0.01,
+                        [Op.gte]: lon - 0.01
+                    },
+                    latitude: {
+                        [Op.lte]: parseFloat(lat) + 0.01,
+                        [Op.gte]: lat - 0.01
+                    }
+                },
+                include: [
+                    {
+                        model: Rating,
+                        attributes: [[Sequelize.fn('AVG', Sequelize.col('ratings.rate')), 'rate_avg']],
+                        // separate : true,
+                        required: true
+                    }
+                ],
+                group: [ 'toilet.id' ]
+            });
+            */
+            return toilet;
+        }
+        catch (error) { throw new Error(error); }
     }
 }
 
