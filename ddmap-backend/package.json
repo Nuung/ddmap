@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "db:init": "mysql -u root -p < ./src/models/sql/db_init.sql",
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
