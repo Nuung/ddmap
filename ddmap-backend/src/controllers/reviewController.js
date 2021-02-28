@@ -1,9 +1,13 @@
 'use strict'
 const ReviewService = require('../service/ReviewService');
-const { Review } = require('../models');
-
 
 const registerNewReview = async (req, res) => {
+
+    // rating을 위해 가중치 평균: 40 25 35
+    const { clean_of_toilet, amount_of_tissue, is_old } = req.body;
+    const oldValue = (is_old / 100) * 5;
+    req.body.rate = clean_of_toilet * 0.4 + amount_of_tissue * 0.25 + oldValue * 0.35;
+    console.log(req.body.rate)
 
     try {
         const reviewService = new ReviewService();
@@ -24,7 +28,6 @@ const registerNewReview = async (req, res) => {
             console.log(data);
             res.status(401).json({ data });
         }
-
     }
     catch (error) {
         console.log(error);

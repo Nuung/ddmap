@@ -1,16 +1,21 @@
-const ReviewModel = require('../models/ReviewModel')
+'use strict';
+
+const ReviewModel = require('../models/ReviewModel');
+const RatingModel = require('../models/RatingModel');
 
 class ReviewService {
 
     constructor() {
         this.ReviewModel = new ReviewModel();
+        this.RatingModel = new RatingModel();
     }
 
-    async registerReviewData(data) {
+    async registerReviewData(data, rating) {
         try {
             console.log("----service: review register");
             const review = await this.ReviewModel.registerNewReview(data);
-            return review;
+            const rating = await this.RatingModel.registerNewRating(data);
+            return review && rating;
 
         } catch (error) {
             console.log("Service registerReviewData: " + error);
